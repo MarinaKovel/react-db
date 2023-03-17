@@ -1,0 +1,37 @@
+.cards-container {
+    display: flex;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #2AB5C5;
+    background-color: #fff;
+    color: #2AB5C5;
+    border-radius: 7px;
+    margin: 10px;
+    width: 136px;
+    font-size: 0.6em;
+}
+.card__poster {
+    position: relative;
+    padding-bottom: 5px;
+    height: 200px;
+    border-radius: 5px 5px 0 0;
+}
+.card__rating {
+    position: absolute;
+    z-index: 1;
+    align-self: flex-end;
+    margin: 0;
+    padding: 0px 3px 0px 20px;
+    background: url('https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/Rating.png') 10% 0% / 35% 70% no-repeat;
+    background-color: #fff;
+    border-radius: 5px;
+    font-size: 0.5rem;
+    font-weight: bold;
+}
+.card__description {
+    font-size: 0.4rem;
+    text-align: left;
+    padding: 0 4px;
+}
