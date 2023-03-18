@@ -12,11 +12,11 @@ class CardsList extends React.Component {
     }
 
     return (
-      <div className="cards-container">
+      <section className="cards-container" role="list">
         {cards.map((id) => (
           <Card key={id} movie={moviesJson.movies[id - 1]} />
         ))}
-      </div>
+      </section>
     );
   }
 }

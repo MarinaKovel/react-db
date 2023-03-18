@@ -6,7 +6,10 @@ class Notfoundpage extends React.Component {
   render() {
     return (
       <div>
-        This page doesn&apos;t exist. Go <NavLink to="/">home</NavLink>
+        This page doesn&apos;t exist. Go to{' '}
+        <NavLink to="/">
+          <u>Main page</u>
+        </NavLink>
       </div>
     );
   }

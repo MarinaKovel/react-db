@@ -7,7 +7,7 @@ class Layout extends React.Component {
   render() {
     return (
       <>
-        <header className="header">
+        <header className="header" role="navigation">
           <NavLink to="/" className="navlink">
             Main
           </NavLink>

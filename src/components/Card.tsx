@@ -30,7 +30,7 @@ class Card extends React.Component<MovieList, Movie> {
 
   render() {
     return (
-      <div className="card">
+      <div className="card" role="listitem">
         <p className="card__rating">{this.state.rating}</p>
         <img src={this.state.poster} alt="poster" className="card__poster" />
         <div>
