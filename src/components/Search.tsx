@@ -12,15 +12,15 @@ class Search extends React.Component<object, { search: string }> {
     localStorage.setItem('search', search);
   }
 
-  onChange = (e: unknown) => {
-    this.setState({ search: ((e as Event).target as HTMLInputElement).value });
+  onChange = (event: unknown) => {
+    this.setState({ search: ((event as Event).target as HTMLInputElement).value });
   };
 
   render() {
     const { search } = this.state;
     return (
       <form>
-        <input type="text" value={search} placeholder="Search" onChange={this.onChange} />
+        <input type="search" value={search} placeholder="Search" onChange={this.onChange} />
       </form>
     );
   }

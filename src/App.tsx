@@ -1,10 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
-import './App.scss';
+import './index.scss';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import Layout from './components/Layout';
-
 import Mainpage from './pages/Mainpage';
 import Aboutpage from './pages/About';
 import Notfoundpage from './pages/Notfoundpage';
