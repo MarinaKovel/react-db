@@ -1,2 +1,2 @@
 # react-db
-RSS React
+https://marinakovel.github.io/react-db/
