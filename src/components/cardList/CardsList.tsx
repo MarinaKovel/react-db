@@ -1,8 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import Card from './Card';
-import moviesJson from '../assets/movies.json';
-import './card.scss';
+import Card from '../card/Card';
+import moviesJson from '../../assets/movies.json';
+import './cardList.scss';
 
 class CardsList extends React.Component {
   render() {
