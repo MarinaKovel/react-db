@@ -33,7 +33,7 @@ class Answers extends React.Component<TForm, object> {
         <span className="advice__question">Best regards, </span>
         <span>{this.props.author === 'show' ? this.props.from : 'Anonymous'}</span>
         <br />
-        <img src={this.props.image} alt="" width={200} height={200} />
+        <img src={this.props.image} alt="advice" width={200} height={200} />
       </div>
     );
   }
