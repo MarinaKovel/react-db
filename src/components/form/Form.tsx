@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import './form.scss';
 import Answers, { TForm } from '../answers/Answers';
@@ -50,35 +47,29 @@ class Form extends React.Component<object, InputType> {
         },
       }));
     }
-    this.setState(
-      (prevState) => ({
-        ...prevState,
-        arr: [...prevState.arr, prevState.form],
-      }),
-      () => console.log(this.state.arr)
-    );
+    this.setState((prevState) => ({
+      ...prevState,
+      arr: [...prevState.arr, prevState.form],
+    }));
 
     alert('Data has been saved');
     (event.target as HTMLFormElement).reset();
 
-    this.setState(
-      (prevState) => ({
-        ...prevState,
-        form: {
-          from: '',
-          to: '',
-          date: '',
-          type: '',
-          isCool: '',
-          isFriend: '',
-          doLike: '',
-          message: '',
-          author: 'Anonymous',
-          image: '',
-        },
-      }),
-      () => console.log(this.state.arr)
-    );
+    this.setState((prevState) => ({
+      ...prevState,
+      form: {
+        from: '',
+        to: '',
+        date: '',
+        type: '',
+        isCool: '',
+        isFriend: '',
+        doLike: '',
+        message: '',
+        author: 'Anonymous',
+        image: '',
+      },
+    }));
   }
 
   onChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {

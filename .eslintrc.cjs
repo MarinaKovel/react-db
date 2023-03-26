@@ -43,6 +43,10 @@ module.exports = {
     '@typescript-eslint/no-var-reqiures': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
+    'no-alert': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/prefer-stateless-function': 'off',
   },
   settings: {
     react: {

@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import './index.scss';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
