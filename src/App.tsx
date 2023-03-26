@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Mainpage from './pages/Mainpage';
 import Aboutpage from './pages/about/Aboutpage';
-import Formspage from './pages/Formspage';
+import Formpage from './pages/Formpage';
 import Notfoundpage from './pages/Notfoundpage';
 
 class App extends React.Component {
@@ -15,7 +15,7 @@ class App extends React.Component {
         <Route path="/" element={<Layout />}>
           <Route index element={<Mainpage />} />
           <Route path="about" element={<Aboutpage />} />
-          <Route path="forms" element={<Formspage />} />
+          <Route path="form" element={<Formpage />} />
           <Route path="*" element={<Notfoundpage />} />
         </Route>
       </Routes>

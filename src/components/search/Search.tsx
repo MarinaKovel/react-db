@@ -13,7 +13,6 @@ class Search extends React.Component<object, { search: string }> {
   }
 
   onChange = (event: unknown) => {
-    console.log(this.state);
     this.setState({ search: ((event as Event).target as HTMLInputElement).value });
   };
 

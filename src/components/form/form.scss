@@ -7,6 +7,7 @@
 .form {
   display: flex;
   flex-direction: column;
+  max-width: 550px;
   padding: 20px;
   font-size: 0.7em;
   border: 3px solid #fff;
@@ -25,4 +26,13 @@
 .requirements {
   font-size: 0.5rem;
   color: #f4f750;
+}
+.advice {
+  border: 1px solid #f4f750;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 10px;
+}
+.advice__question {
+  color:#f4f750;
 }
