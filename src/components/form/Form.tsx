@@ -9,7 +9,9 @@ interface InputType {
 
 class Form extends React.Component<object, InputType> {
   input: React.RefObject<HTMLInputElement>;
+
   select: React.RefObject<HTMLSelectElement>;
+
   showRequirement: number;
 
   constructor(props: InputType) {

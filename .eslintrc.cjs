@@ -34,13 +34,8 @@ module.exports = {
     'react/display-name': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
-    '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/no-explicit-any': 'error',
-    '@typescript-eslint/no-var-reqiures': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'no-alert': 'off',
@@ -48,7 +43,6 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     'react/prefer-stateless-function': 'off',
     'react/no-array-index-key': 'off',
-    '@typescript-eslint/lines-between-class-members': 'off',
   },
   settings: {
     react: {
