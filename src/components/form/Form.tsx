@@ -1,21 +1,15 @@
 /* eslint-disable react/no-access-state-in-setstate */
 import React from 'react';
 import './form.scss';
-import Answers, { TForm, TValid } from '../answers/Answers';
+import Answers from '../answers/Answers';
+import { TInput } from '../../types';
 
-interface InputType {
-  form: TForm;
-  valid: TValid;
-  arr: TForm[];
-  opacity: number[];
-}
-
-class Form extends React.Component<object, InputType> {
+class Form extends React.Component<object, TInput> {
   input: React.RefObject<HTMLInputElement>;
 
   select: React.RefObject<HTMLSelectElement>;
 
-  constructor(props: InputType) {
+  constructor(props: TInput) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -44,7 +38,7 @@ class Form extends React.Component<object, InputType> {
         author: false,
         image: false,
       },
-      arr: [],
+      answers: [],
       opacity: [0, 0, 0, 0, 0, 0, 0, 0],
     };
   }
@@ -74,14 +68,13 @@ class Form extends React.Component<object, InputType> {
       }
       this.setState((prevState) => ({
         ...prevState,
-        arr: [...prevState.arr, prevState.form],
+        answers: [...prevState.answers, prevState.form],
       }));
 
       alert('Data has been saved');
 
       (event.target as HTMLFormElement).reset();
-      this.setState((prevState) => ({
-        ...prevState,
+      this.setState({
         form: {
           from: '',
           to: '',
@@ -104,11 +97,8 @@ class Form extends React.Component<object, InputType> {
           author: false,
           image: false,
         },
-      }));
-      this.setState((prevState) => ({
-        ...prevState,
-        opacity: [0, 0, 0, 0, 0, 0, 0, 0],
-      }));
+      });
+      this.setState({ opacity: [0, 0, 0, 0, 0, 0, 0, 0] });
     } else {
       this.checkValid();
     }
@@ -119,9 +109,10 @@ class Form extends React.Component<object, InputType> {
       ...prevState,
       form: {
         ...prevState.form,
-        [event.target.name]: event.target.value.toString(),
+        [event.target.name]: event.target.value,
       },
     }));
+
     if (
       event.target.name === 'isCool' ||
       event.target.name === 'isFriend' ||
@@ -134,20 +125,12 @@ class Form extends React.Component<object, InputType> {
           reason: true,
         },
       }));
-    } else if (event.target.value) {
-      this.setState((prevState) => ({
-        ...prevState,
-        valid: {
-          ...prevState.valid,
-          [event.target.name]: true,
-        },
-      }));
     } else {
       this.setState((prevState) => ({
         ...prevState,
         valid: {
           ...prevState.valid,
-          [event.target.name]: false,
+          [event.target.name]: !!event.target.value,
         },
       }));
     }
@@ -296,20 +279,8 @@ class Form extends React.Component<object, InputType> {
           <button type="submit">Submit</button>
         </form>
 
-        {this.state.arr.map((form, i) => (
-          <Answers
-            key={`${i}+${form.to}`}
-            from={form.from}
-            to={form.to}
-            date={form.date}
-            type={form.type}
-            isCool={form.isCool}
-            isFriend={form.isFriend}
-            doLike={form.doLike}
-            message={form.message}
-            author={form.author}
-            image={form.image}
-          />
+        {this.state.answers.map((answer, i) => (
+          <Answers key={`${i}+${answer.to}`} answer={answer} />
         ))}
       </>
     );
