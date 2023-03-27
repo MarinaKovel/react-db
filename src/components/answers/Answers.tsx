@@ -12,6 +12,16 @@ export type TForm = {
   author: string;
   image: string;
 };
+export type TValid = {
+  from: boolean;
+  to: boolean;
+  date: boolean;
+  type: boolean;
+  reason: boolean;
+  message: boolean;
+  author: boolean;
+  image: boolean;
+};
 
 class Answers extends React.Component<TForm, object> {
   render() {

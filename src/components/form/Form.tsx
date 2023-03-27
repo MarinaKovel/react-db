@@ -1,10 +1,13 @@
+/* eslint-disable react/no-access-state-in-setstate */
 import React from 'react';
 import './form.scss';
-import Answers, { TForm } from '../answers/Answers';
+import Answers, { TForm, TValid } from '../answers/Answers';
 
 interface InputType {
   form: TForm;
+  valid: TValid;
   arr: TForm[];
+  opacity: number[];
 }
 
 class Form extends React.Component<object, InputType> {
@@ -12,15 +15,12 @@ class Form extends React.Component<object, InputType> {
 
   select: React.RefObject<HTMLSelectElement>;
 
-  showRequirement: number;
-
   constructor(props: InputType) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.input = React.createRef();
     this.select = React.createRef();
-    this.showRequirement = 0;
     this.state = {
       form: {
         from: '',
@@ -34,7 +34,18 @@ class Form extends React.Component<object, InputType> {
         author: 'Anonymous',
         image: '',
       },
+      valid: {
+        from: false,
+        to: false,
+        date: false,
+        type: false,
+        reason: false,
+        message: false,
+        author: false,
+        image: false,
+      },
       arr: [],
+      opacity: [0, 0, 0, 0, 0, 0, 0, 0],
     };
   }
 
@@ -54,6 +65,10 @@ class Form extends React.Component<object, InputType> {
           form: {
             ...prevState.form,
             image: link,
+          },
+          valid: {
+            ...prevState.valid,
+            image: true,
           },
         }));
       }
@@ -79,10 +94,23 @@ class Form extends React.Component<object, InputType> {
           author: 'Anonymous',
           image: '',
         },
+        valid: {
+          from: false,
+          to: false,
+          date: false,
+          type: false,
+          reason: false,
+          message: false,
+          author: false,
+          image: false,
+        },
       }));
-      this.showRequirement = 0;
+      this.setState((prevState) => ({
+        ...prevState,
+        opacity: [0, 0, 0, 0, 0, 0, 0, 0],
+      }));
     } else {
-      this.showRequirement = 1;
+      this.checkValid();
     }
   }
 
@@ -93,6 +121,51 @@ class Form extends React.Component<object, InputType> {
         ...prevState.form,
         [event.target.name]: event.target.value.toString(),
       },
+    }));
+    if (
+      event.target.name === 'isCool' ||
+      event.target.name === 'isFriend' ||
+      event.target.name === 'doLike'
+    ) {
+      this.setState((prevState) => ({
+        ...prevState,
+        valid: {
+          ...prevState.valid,
+          reason: true,
+        },
+      }));
+    } else if (event.target.value) {
+      this.setState((prevState) => ({
+        ...prevState,
+        valid: {
+          ...prevState.valid,
+          [event.target.name]: true,
+        },
+      }));
+    } else {
+      this.setState((prevState) => ({
+        ...prevState,
+        valid: {
+          ...prevState.valid,
+          [event.target.name]: false,
+        },
+      }));
+    }
+  }
+
+  checkValid() {
+    this.setState((prevState) => ({
+      ...prevState,
+      opacity: [
+        +!this.state.valid.from,
+        +!this.state.valid.to,
+        +!this.state.valid.date,
+        +!this.state.valid.type,
+        +!this.state.valid.reason,
+        +!this.state.valid.message,
+        +!this.state.valid.author,
+        +!this.state.valid.image,
+      ],
     }));
   }
 
@@ -106,7 +179,7 @@ class Form extends React.Component<object, InputType> {
           <label>
             Your name:
             <input name="from" type="text" ref={this.input} onChange={this.onChange} />
-            <div className="requirements" style={{ opacity: this.showRequirement }}>
+            <div title="from" className="requirements" style={{ opacity: this.state.opacity[0] }}>
               Please write your name
             </div>
           </label>
@@ -114,7 +187,7 @@ class Form extends React.Component<object, InputType> {
           <label>
             Greetings to:
             <input name="to" type="text" ref={this.input} onChange={this.onChange} />
-            <div className="requirements" style={{ opacity: this.showRequirement }}>
+            <div className="requirements" style={{ opacity: this.state.opacity[1] }}>
               Write the name of person
             </div>
           </label>
@@ -122,7 +195,7 @@ class Form extends React.Component<object, InputType> {
           <label>
             Date of greetings:
             <input name="date" type="date" ref={this.input} onChange={this.onChange} />
-            <div className="requirements" style={{ opacity: this.showRequirement }}>
+            <div className="requirements" style={{ opacity: this.state.opacity[2] }}>
               Choose a date
             </div>
           </label>
@@ -141,7 +214,7 @@ class Form extends React.Component<object, InputType> {
               <option value="thank you">Thank you</option>
               <option value="sorry">Sorry</option>
             </select>
-            <div className="requirements" style={{ opacity: this.showRequirement }}>
+            <div className="requirements" style={{ opacity: this.state.opacity[3] }}>
               Choose a type
             </div>
           </label>
@@ -176,14 +249,14 @@ class Form extends React.Component<object, InputType> {
             />
             <label htmlFor="like">I like you</label>
           </div>
-          <div className="requirements" style={{ opacity: this.showRequirement }}>
+          <div className="requirements" style={{ opacity: this.state.opacity[4] }}>
             Choose a reason
           </div>
 
           <label>
             Movie advice & message: <br />
             <input name="message" type="text" ref={this.input} onChange={this.onChange} />
-            <div className="requirements" style={{ opacity: this.showRequirement }}>
+            <div className="requirements" style={{ opacity: this.state.opacity[5] }}>
               Write a movie and/or message
             </div>
           </label>
@@ -207,7 +280,7 @@ class Form extends React.Component<object, InputType> {
               onChange={this.onChange}
             />
             <label htmlFor="anonymous">Anonymous</label>
-            <div className="requirements" style={{ opacity: this.showRequirement }}>
+            <div className="requirements" style={{ opacity: this.state.opacity[6] }}>
               Choose a signature
             </div>
           </div>
@@ -215,7 +288,7 @@ class Form extends React.Component<object, InputType> {
           <div>
             <label htmlFor="img">Add picture</label>
             <input type="file" id="img" name="image" accept="image/*" ref={this.input} />
-            <div className="requirements" style={{ opacity: this.showRequirement }}>
+            <div className="requirements" style={{ opacity: this.state.opacity[7] }}>
               Choose a picture
             </div>
           </div>
