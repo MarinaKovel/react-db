@@ -22,13 +22,6 @@ export type TForm = {
   image: string;
 };
 
-export type TInput = {
-  form: TForm;
-  valid: TValid;
-  answers: TForm[];
-  opacity: number[];
-};
-
 export type TSelect = {
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   name: string;
@@ -37,15 +30,4 @@ export type TSelect = {
 
 export type TAnswer = {
   answer: TForm;
-};
-
-export type TValid = {
-  from: boolean;
-  to: boolean;
-  date: boolean;
-  type: boolean;
-  reason: boolean;
-  message: boolean;
-  author: boolean;
-  image: boolean;
 };

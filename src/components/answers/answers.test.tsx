@@ -15,19 +15,7 @@ const answer = {
 
 describe('Answers', () => {
   it('Renders answers to form', () => {
-    render(
-      <Answers
-        key={1}
-        from={answer.from}
-        to={answer.to}
-        date={answer.date}
-        type={answer.type}
-        reason={answer.reason}
-        message={answer.message}
-        author={answer.author}
-        image={answer.image}
-      />
-    );
+    render(<Answers key={1} answer={answer} />);
     expect(screen.getByText(/HI THERE!/i)).toBeInTheDocument();
     expect(screen.getByText(/Dear/i)).toBeInTheDocument();
     expect(screen.getByText(/Today/i)).toBeInTheDocument();

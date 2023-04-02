@@ -42,6 +42,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'react/destructuring-assignment': 'off',
     'react/no-array-index-key': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   settings: {
     react: {

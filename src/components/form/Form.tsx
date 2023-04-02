@@ -1,13 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/no-access-state-in-setstate */
-import React, { useState } from 'react';
-import { useForm, useFieldArray, Controller } from 'react-hook-form';
+import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import './form.scss';
 import Answers from '../answers/Answers';
 import Select from './Select';
-import { TAnswer, TForm, TInput } from '../../types';
+import { TForm } from '../../types';
 
-// <object, TInput>
 function Form() {
   const {
     register,
@@ -15,9 +12,7 @@ function Form() {
     formState: { errors },
     reset,
     formState,
-    formState: { isSubmitSuccessful },
   } = useForm<TForm>();
-
   const [answer, setAnswer] = useState<TForm>({
     from: '',
     to: '',
@@ -28,11 +23,10 @@ function Form() {
     author: 'Anonymous',
     image: '',
   });
-
   const [opacity, setOpacity] = useState('0');
   const [answers, setAnswers] = useState<TForm[]>([]);
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'reason') {
       setAnswer((prevState) => ({
         ...prevState,
@@ -50,14 +44,6 @@ function Form() {
     }
   };
 
-  const onChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setAnswer((prevState) => ({ ...prevState, type: event.target.value }));
-  };
-
-  function handleClick() {
-    if (errors) setOpacity('1');
-  }
-
   const onSubmit = handleSubmit((data) => {
     setAnswer({
       ...answer,
@@ -69,27 +55,14 @@ function Form() {
       message: data.message,
       author: data.author,
     });
+    alert('Data has been saved');
     setAnswers([...answers, answer]);
     setOpacity('0');
-    setAnswer({
-      ...answer,
-      reason: [],
-    });
+    setAnswer({ ...answer, reason: [] });
   });
 
-  React.useEffect(() => {
-    if (formState.isSubmitSuccessful) {
-      reset({
-        from: '',
-        to: '',
-        date: '',
-        type: '',
-        reason: [],
-        message: '',
-        author: 'Anonymous',
-        image: '',
-      });
-    }
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) reset();
   }, [formState, answer, reset]);
 
   return (
@@ -107,7 +80,7 @@ function Form() {
             })}
             name="from"
             type="text"
-            onChange={onChange}
+            onChange={handleChange}
           />
           <div className="requirements">{errors.from?.message}</div>
         </label>
@@ -118,7 +91,7 @@ function Form() {
             {...register('to', { required: 'Write the name of person' })}
             name="to"
             type="text"
-            onChange={onChange}
+            onChange={handleChange}
           />
           <div className="requirements">{errors.to?.message}</div>
         </label>
@@ -129,7 +102,7 @@ function Form() {
             {...register('date', { required: 'Choose a date' })}
             name="date"
             type="date"
-            onChange={onChange}
+            onChange={handleChange}
           />
           <div className="requirements">{errors.date?.message}</div>
         </label>
@@ -138,7 +111,9 @@ function Form() {
           label="Type of greetings:"
           {...register('type')}
           name="type"
-          onChange={onChangeSelect}
+          onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+            setAnswer((prevState) => ({ ...prevState, type: event.target.value }));
+          }}
         />
         <div className="requirements">{errors.type?.message}</div>
 
@@ -150,7 +125,7 @@ function Form() {
               name="reason"
               type="checkbox"
               value="You are cool"
-              onChange={onChange}
+              onChange={handleChange}
             />
             You are cool
           </label>
@@ -160,7 +135,7 @@ function Form() {
               name="reason"
               type="checkbox"
               value="You are my friend"
-              onChange={onChange}
+              onChange={handleChange}
             />
             You are my friend
           </label>
@@ -170,7 +145,7 @@ function Form() {
               name="reason"
               type="checkbox"
               value="I like you"
-              onChange={onChange}
+              onChange={handleChange}
             />
             I like you
           </label>
@@ -183,7 +158,7 @@ function Form() {
             {...register('message', { required: 'Write a movie and/or message' })}
             name="message"
             type="text"
-            onChange={onChange}
+            onChange={handleChange}
           />
           <div className="requirements">{errors.message?.message}</div>
         </label>
@@ -195,7 +170,7 @@ function Form() {
               type="radio"
               name="author"
               value="show"
-              onChange={onChange}
+              onChange={handleChange}
             />
             Show author
           </label>
@@ -205,7 +180,7 @@ function Form() {
               type="radio"
               name="author"
               value="anonymous"
-              onChange={onChange}
+              onChange={handleChange}
             />
             Anonymous
           </label>
@@ -220,7 +195,7 @@ function Form() {
               type="file"
               name="image"
               accept="image/*"
-              onChange={onChange}
+              onChange={handleChange}
             />
             <div className="requirements" style={{ opacity }}>
               Choose a picture
@@ -228,23 +203,13 @@ function Form() {
           </label>
         </div>
 
-        <button type="submit" onClick={handleClick}>
+        <button type="submit" onClick={() => (!answer.image ? setOpacity('1') : '')}>
           Submit
         </button>
       </form>
 
       {answers.map((el, i) => (
-        <Answers
-          key={`${i}+${el.to}`}
-          from={el.from}
-          to={el.to}
-          date={el.date}
-          type={el.type}
-          reason={el.reason}
-          message={el.message}
-          author={el.author}
-          image={el.image}
-        />
+        <Answers key={`${i}+${el.to}`} answer={el} />
       ))}
     </>
   );

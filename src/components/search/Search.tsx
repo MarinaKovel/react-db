@@ -1,26 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
-// <object, { search: string }>  useEffect + useRef + стейт
 function Search() {
-  const [searchInput, setSearchInput] = useState({
-    search: localStorage.getItem('search') || '',
-  });
+  const [search, setSearch] = useState(localStorage.getItem('search') || '');
 
-  function handleChange(event: unknown) {
-    setSearchInput({ search: ((event as Event).target as HTMLInputElement).value });
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearch(event.target.value);
   }
-
-  useEffect(() => {
-    return () => localStorage.setItem('search', searchInput.search);
-  }, [searchInput]);
 
   return (
     <form>
       <input
         type="search"
-        value={searchInput.search}
+        value={search}
         placeholder="Search"
         onChange={handleChange}
+        onBlur={() => localStorage.setItem('search', search)}
       />
     </form>
   );

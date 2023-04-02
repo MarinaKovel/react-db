@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './card.scss';
-import { TMovieList, TMovie } from '../../types';
+import { TMovieList } from '../../types';
 
-// <TMovieList, TMovie>
 function Card(props: TMovieList) {
-  const [name, setName] = useState(props.movie.name);
-  const [year, setYear] = useState(props.movie.year);
-  const [genre, setGenre] = useState(props.movie.genre);
-  const [rating, setRating] = useState(props.movie.rating);
-  const [stars, setStars] = useState(props.movie.stars);
-  const [poster, setPoster] = useState(props.movie.poster);
-
   return (
     <div className="card" role="listitem">
-      <p className="card__rating">{rating}</p>
-      <img src={poster} alt="poster" className="card__poster" />
+      <p className="card__rating">{props.movie.rating}</p>
+      <img src={props.movie.poster} alt="poster" className="card__poster" />
       <div>
-        <span>{year} • </span>
-        <span>{name}</span>
+        <span>{props.movie.year} • </span>
+        <span>{props.movie.name}</span>
       </div>
       <span className="card__description">
-        <u>Genre:</u> {genre}
+        <u>Genre:</u> {props.movie.genre}
       </span>
       <span className="card__description">
-        <u>Stars:</u> {stars}
+        <u>Stars:</u> {props.movie.stars}
       </span>
     </div>
   );
