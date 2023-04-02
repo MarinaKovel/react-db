@@ -1,289 +1,253 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-access-state-in-setstate */
-import React from 'react';
+import React, { useState } from 'react';
+import { useForm, useFieldArray, Controller } from 'react-hook-form';
 import './form.scss';
 import Answers from '../answers/Answers';
-import { TInput } from '../../types';
+import Select from './Select';
+import { TAnswer, TForm, TInput } from '../../types';
 
-class Form extends React.Component<object, TInput> {
-  input: React.RefObject<HTMLInputElement>;
+// <object, TInput>
+function Form() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    formState,
+    formState: { isSubmitSuccessful },
+  } = useForm<TForm>();
 
-  select: React.RefObject<HTMLSelectElement>;
+  const [answer, setAnswer] = useState<TForm>({
+    from: '',
+    to: '',
+    date: '',
+    type: '',
+    reason: [],
+    message: '',
+    author: 'Anonymous',
+    image: '',
+  });
 
-  constructor(props: TInput) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.input = React.createRef();
-    this.select = React.createRef();
-    this.state = {
-      form: {
+  const [opacity, setOpacity] = useState('0');
+  const [answers, setAnswers] = useState<TForm[]>([]);
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.name === 'reason') {
+      setAnswer((prevState) => ({
+        ...prevState,
+        reason: [...prevState.reason, event.target.value],
+      }));
+    } else {
+      setAnswer((prevState) => ({
+        ...prevState,
+        [event.target.name]: event.target.value,
+      }));
+    }
+    if (event.target.files) {
+      setAnswer({ ...answer, image: URL.createObjectURL(event.target.files[0]) });
+      setOpacity('0');
+    }
+  };
+
+  const onChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setAnswer((prevState) => ({ ...prevState, type: event.target.value }));
+  };
+
+  function handleClick() {
+    if (errors) setOpacity('1');
+  }
+
+  const onSubmit = handleSubmit((data) => {
+    setAnswer({
+      ...answer,
+      type: data.type,
+      from: data.from,
+      to: data.to,
+      date: data.date,
+      reason: data.reason,
+      message: data.message,
+      author: data.author,
+    });
+    setAnswers([...answers, answer]);
+    setOpacity('0');
+    setAnswer({
+      ...answer,
+      reason: [],
+    });
+  });
+
+  React.useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({
         from: '',
         to: '',
         date: '',
         type: '',
-        isCool: '',
-        isFriend: '',
-        doLike: '',
+        reason: [],
         message: '',
         author: 'Anonymous',
         image: '',
-      },
-      valid: {
-        from: false,
-        to: false,
-        date: false,
-        type: false,
-        reason: false,
-        message: false,
-        author: false,
-        image: false,
-      },
-      answers: [],
-      opacity: [0, 0, 0, 0, 0, 0, 0, 0],
-    };
-  }
-
-  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (
-      this.state.form.from &&
-      this.state.form.to &&
-      this.state.form.date &&
-      this.state.form.type &&
-      this.state.form.message
-    ) {
-      if (this?.input?.current?.files) {
-        const link = URL.createObjectURL(this.input.current.files[0]);
-        this.setState((prevState) => ({
-          ...prevState,
-          form: {
-            ...prevState.form,
-            image: link,
-          },
-          valid: {
-            ...prevState.valid,
-            image: true,
-          },
-        }));
-      }
-      this.setState((prevState) => ({
-        ...prevState,
-        answers: [...prevState.answers, prevState.form],
-      }));
-
-      alert('Data has been saved');
-
-      (event.target as HTMLFormElement).reset();
-      this.setState({
-        form: {
-          from: '',
-          to: '',
-          date: '',
-          type: '',
-          isCool: '',
-          isFriend: '',
-          doLike: '',
-          message: '',
-          author: 'Anonymous',
-          image: '',
-        },
-        valid: {
-          from: false,
-          to: false,
-          date: false,
-          type: false,
-          reason: false,
-          message: false,
-          author: false,
-          image: false,
-        },
       });
-      this.setState({ opacity: [0, 0, 0, 0, 0, 0, 0, 0] });
-    } else {
-      this.checkValid();
     }
-  }
+  }, [formState, answer, reset]);
 
-  onChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
-    this.setState((prevState) => ({
-      ...prevState,
-      form: {
-        ...prevState.form,
-        [event.target.name]: event.target.value,
-      },
-    }));
+  return (
+    <>
+      <form className="form" onSubmit={onSubmit}>
+        <h1>Movie adviser</h1>
+        <p className="form__text-yellow">All the fields are required!</p>
 
-    if (
-      event.target.name === 'isCool' ||
-      event.target.name === 'isFriend' ||
-      event.target.name === 'doLike'
-    ) {
-      this.setState((prevState) => ({
-        ...prevState,
-        valid: {
-          ...prevState.valid,
-          reason: true,
-        },
-      }));
-    } else {
-      this.setState((prevState) => ({
-        ...prevState,
-        valid: {
-          ...prevState.valid,
-          [event.target.name]: !!event.target.value,
-        },
-      }));
-    }
-  }
+        <label>
+          Your name:
+          <input
+            {...register('from', {
+              required: 'fill in',
+              minLength: { value: 3, message: '>= 3 letters' },
+            })}
+            name="from"
+            type="text"
+            onChange={onChange}
+          />
+          <div className="requirements">{errors.from?.message}</div>
+        </label>
 
-  checkValid() {
-    this.setState((prevState) => ({
-      ...prevState,
-      opacity: [
-        +!this.state.valid.from,
-        +!this.state.valid.to,
-        +!this.state.valid.date,
-        +!this.state.valid.type,
-        +!this.state.valid.reason,
-        +!this.state.valid.message,
-        +!this.state.valid.author,
-        +!this.state.valid.image,
-      ],
-    }));
-  }
+        <label>
+          Greetings to:
+          <input
+            {...register('to', { required: 'Write the name of person' })}
+            name="to"
+            type="text"
+            onChange={onChange}
+          />
+          <div className="requirements">{errors.to?.message}</div>
+        </label>
 
-  render() {
-    return (
-      <>
-        <form className="form" onSubmit={this.handleSubmit}>
-          <h1>Movie adviser</h1>
-          <p className="form__text-yellow">All the fields are required!</p>
+        <label>
+          Date of greetings:
+          <input
+            {...register('date', { required: 'Choose a date' })}
+            name="date"
+            type="date"
+            onChange={onChange}
+          />
+          <div className="requirements">{errors.date?.message}</div>
+        </label>
 
+        <Select
+          label="Type of greetings:"
+          {...register('type')}
+          name="type"
+          onChange={onChangeSelect}
+        />
+        <div className="requirements">{errors.type?.message}</div>
+
+        <div className="reason">
+          <p>Reason:</p>
           <label>
-            Your name:
-            <input name="from" type="text" ref={this.input} onChange={this.onChange} />
-            <div title="from" className="requirements" style={{ opacity: this.state.opacity[0] }}>
-              Please write your name
-            </div>
-          </label>
-
-          <label>
-            Greetings to:
-            <input name="to" type="text" ref={this.input} onChange={this.onChange} />
-            <div className="requirements" style={{ opacity: this.state.opacity[1] }}>
-              Write the name of person
-            </div>
-          </label>
-
-          <label>
-            Date of greetings:
-            <input name="date" type="date" ref={this.input} onChange={this.onChange} />
-            <div className="requirements" style={{ opacity: this.state.opacity[2] }}>
-              Choose a date
-            </div>
-          </label>
-
-          <label htmlFor="greetings-type">
-            Type of greetings:
-            <select
-              name="type"
-              id="greetings-type"
-              value={this.state.form.type}
-              ref={this.select}
-              onChange={this.onChange}
-            >
-              <option value="">--Please choose an option--</option>
-              <option value="hi">Hi</option>
-              <option value="thank you">Thank you</option>
-              <option value="sorry">Sorry</option>
-            </select>
-            <div className="requirements" style={{ opacity: this.state.opacity[3] }}>
-              Choose a type
-            </div>
-          </label>
-
-          <div className="reason">
-            <p>Reason:</p>
             <input
-              name="isCool"
+              {...register('reason', { required: 'Select at list one option' })}
+              name="reason"
               type="checkbox"
-              id="cool"
               value="You are cool"
-              ref={this.input}
-              onChange={this.onChange}
+              onChange={onChange}
             />
-            <label htmlFor="cool">You are cool</label>
-            <input
-              name="isFriend"
-              type="checkbox"
-              id="friend"
-              value="You are my friend"
-              ref={this.input}
-              onChange={this.onChange}
-            />
-            <label htmlFor="friend">You are my friend</label>
-            <input
-              name="doLike"
-              type="checkbox"
-              id="like"
-              value="I like you"
-              ref={this.input}
-              onChange={this.onChange}
-            />
-            <label htmlFor="like">I like you</label>
-          </div>
-          <div className="requirements" style={{ opacity: this.state.opacity[4] }}>
-            Choose a reason
-          </div>
-
-          <label>
-            Movie advice & message: <br />
-            <input name="message" type="text" ref={this.input} onChange={this.onChange} />
-            <div className="requirements" style={{ opacity: this.state.opacity[5] }}>
-              Write a movie and/or message
-            </div>
+            You are cool
           </label>
-
-          <div>
+          <label>
             <input
+              {...register('reason', { required: 'Please select option' })}
+              name="reason"
+              type="checkbox"
+              value="You are my friend"
+              onChange={onChange}
+            />
+            You are my friend
+          </label>
+          <label>
+            <input
+              {...register('reason', { required: 'Please select option' })}
+              name="reason"
+              type="checkbox"
+              value="I like you"
+              onChange={onChange}
+            />
+            I like you
+          </label>
+        </div>
+        <div className="requirements">{errors.reason?.message}</div>
+
+        <label>
+          Movie advice & message: <br />
+          <input
+            {...register('message', { required: 'Write a movie and/or message' })}
+            name="message"
+            type="text"
+            onChange={onChange}
+          />
+          <div className="requirements">{errors.message?.message}</div>
+        </label>
+
+        <div>
+          <label>
+            <input
+              {...register('author', { required: 'Choose a signature' })}
               type="radio"
-              id="show"
               name="author"
               value="show"
-              ref={this.input}
-              onChange={this.onChange}
+              onChange={onChange}
             />
-            <label htmlFor="show">Show author</label>
+            Show author
+          </label>
+          <label>
             <input
+              {...register('author', { required: 'Choose a signature' })}
               type="radio"
-              id="anonymous"
               name="author"
               value="anonymous"
-              ref={this.input}
-              onChange={this.onChange}
+              onChange={onChange}
             />
-            <label htmlFor="anonymous">Anonymous</label>
-            <div className="requirements" style={{ opacity: this.state.opacity[6] }}>
-              Choose a signature
-            </div>
-          </div>
+            Anonymous
+          </label>
+          <div className="requirements">{errors.author?.message}</div>
+        </div>
 
-          <div>
-            <label htmlFor="img">Add picture</label>
-            <input type="file" id="img" name="image" accept="image/*" ref={this.input} />
-            <div className="requirements" style={{ opacity: this.state.opacity[7] }}>
+        <div>
+          <label>
+            Add picture
+            <input
+              {...register('image', { required: true })}
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={onChange}
+            />
+            <div className="requirements" style={{ opacity }}>
               Choose a picture
             </div>
-          </div>
+          </label>
+        </div>
 
-          <button type="submit">Submit</button>
-        </form>
+        <button type="submit" onClick={handleClick}>
+          Submit
+        </button>
+      </form>
 
-        {this.state.answers.map((answer, i) => (
-          <Answers key={`${i}+${answer.to}`} answer={answer} />
-        ))}
-      </>
-    );
-  }
+      {answers.map((el, i) => (
+        <Answers
+          key={`${i}+${el.to}`}
+          from={el.from}
+          to={el.to}
+          date={el.date}
+          type={el.type}
+          reason={el.reason}
+          message={el.message}
+          author={el.author}
+          image={el.image}
+        />
+      ))}
+    </>
+  );
 }
+
 export default Form;

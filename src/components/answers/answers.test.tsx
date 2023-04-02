@@ -7,9 +7,7 @@ const answer = {
   to: 'Name to',
   date: '01.01.2000',
   type: 'Hi',
-  isCool: 'You are cool',
-  isFriend: '',
-  doLike: '',
+  reason: ['You are cool'],
   message: 'Movie advice',
   author: 'show',
   image: 'link',
@@ -17,7 +15,19 @@ const answer = {
 
 describe('Answers', () => {
   it('Renders answers to form', () => {
-    render(<Answers key={1} answer={answer} />);
+    render(
+      <Answers
+        key={1}
+        from={answer.from}
+        to={answer.to}
+        date={answer.date}
+        type={answer.type}
+        reason={answer.reason}
+        message={answer.message}
+        author={answer.author}
+        image={answer.image}
+      />
+    );
     expect(screen.getByText(/HI THERE!/i)).toBeInTheDocument();
     expect(screen.getByText(/Dear/i)).toBeInTheDocument();
     expect(screen.getByText(/Today/i)).toBeInTheDocument();
