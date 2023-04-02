@@ -41,7 +41,6 @@ module.exports = {
     'no-alert': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'react/destructuring-assignment': 'off',
-    'react/prefer-stateless-function': 'off',
     'react/no-array-index-key': 'off',
   },
   settings: {
