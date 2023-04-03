@@ -9,61 +9,33 @@ function Form() {
   const {
     register,
     handleSubmit,
+    formState,
     formState: { errors },
     reset,
-    formState,
   } = useForm<TForm>();
-  const [answer, setAnswer] = useState<TForm>({
-    from: '',
-    to: '',
-    date: '',
-    type: '',
-    reason: [],
-    message: '',
-    author: 'Anonymous',
-    image: '',
-  });
-  const [opacity, setOpacity] = useState('0');
   const [answers, setAnswers] = useState<TForm[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.name === 'reason') {
-      setAnswer((prevState) => ({
-        ...prevState,
-        reason: [...prevState.reason, event.target.value],
-      }));
-    } else {
-      setAnswer((prevState) => ({
-        ...prevState,
-        [event.target.name]: event.target.value,
-      }));
-    }
-    if (event.target.files) {
-      setAnswer({ ...answer, image: URL.createObjectURL(event.target.files[0]) });
-      setOpacity('0');
-    }
-  };
-
-  const onSubmit = handleSubmit((data) => {
-    setAnswer({
-      ...answer,
-      type: data.type,
-      from: data.from,
-      to: data.to,
-      date: data.date,
-      reason: data.reason,
-      message: data.message,
-      author: data.author,
-    });
+  const onSubmit = handleSubmit((data: TForm) => {
+    const link = URL.createObjectURL(data.image[0] as unknown as Blob);
     alert('Data has been saved');
-    setAnswers([...answers, answer]);
-    setOpacity('0');
-    setAnswer({ ...answer, reason: [] });
+    setAnswers([
+      ...answers,
+      {
+        image: link,
+        type: data.type,
+        from: data.from,
+        to: data.to,
+        date: data.date,
+        reason: data.reason,
+        message: data.message,
+        author: data.author,
+      },
+    ]);
   });
 
   useEffect(() => {
     if (formState.isSubmitSuccessful) reset();
-  }, [formState, answer, reset]);
+  }, [formState, reset]);
 
   return (
     <>
@@ -80,7 +52,6 @@ function Form() {
             })}
             name="from"
             type="text"
-            onChange={handleChange}
           />
           <div className="requirements">{errors.from?.message}</div>
         </label>
@@ -91,29 +62,20 @@ function Form() {
             {...register('to', { required: 'Write the name of person' })}
             name="to"
             type="text"
-            onChange={handleChange}
           />
           <div className="requirements">{errors.to?.message}</div>
         </label>
 
         <label>
           Date of greetings:
-          <input
-            {...register('date', { required: 'Choose a date' })}
-            name="date"
-            type="date"
-            onChange={handleChange}
-          />
+          <input {...register('date', { required: 'Choose a date' })} name="date" type="date" />
           <div className="requirements">{errors.date?.message}</div>
         </label>
 
         <Select
           label="Type of greetings:"
-          {...register('type')}
+          {...register('type', { required: 'Choose a type' })}
           name="type"
-          onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-            setAnswer((prevState) => ({ ...prevState, type: event.target.value }));
-          }}
         />
         <div className="requirements">{errors.type?.message}</div>
 
@@ -125,7 +87,6 @@ function Form() {
               name="reason"
               type="checkbox"
               value="You are cool"
-              onChange={handleChange}
             />
             You are cool
           </label>
@@ -135,7 +96,6 @@ function Form() {
               name="reason"
               type="checkbox"
               value="You are my friend"
-              onChange={handleChange}
             />
             You are my friend
           </label>
@@ -145,7 +105,6 @@ function Form() {
               name="reason"
               type="checkbox"
               value="I like you"
-              onChange={handleChange}
             />
             I like you
           </label>
@@ -158,7 +117,6 @@ function Form() {
             {...register('message', { required: 'Write a movie and/or message' })}
             name="message"
             type="text"
-            onChange={handleChange}
           />
           <div className="requirements">{errors.message?.message}</div>
         </label>
@@ -170,7 +128,6 @@ function Form() {
               type="radio"
               name="author"
               value="show"
-              onChange={handleChange}
             />
             Show author
           </label>
@@ -180,7 +137,6 @@ function Form() {
               type="radio"
               name="author"
               value="anonymous"
-              onChange={handleChange}
             />
             Anonymous
           </label>
@@ -191,21 +147,16 @@ function Form() {
           <label>
             Add picture
             <input
-              {...register('image', { required: true })}
+              {...register('image', { required: 'Choose a picture' })}
               type="file"
               name="image"
               accept="image/*"
-              onChange={handleChange}
             />
-            <div className="requirements" style={{ opacity }}>
-              Choose a picture
-            </div>
+            <div className="requirements">{errors.image?.message}</div>
           </label>
         </div>
 
-        <button type="submit" onClick={() => (!answer.image ? setOpacity('1') : '')}>
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </form>
 
       {answers.map((el, i) => (
