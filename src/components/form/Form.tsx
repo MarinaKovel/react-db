@@ -73,46 +73,48 @@ function Form() {
         </label>
 
         <Select
-          label="Type of greetings:"
+          label="Type of greetings: "
           {...register('type', { required: 'Choose a type' })}
           name="type"
         />
         <div className="requirements">{errors.type?.message}</div>
 
+        <p>Reason:</p>
         <div className="reason">
-          <p>Reason:</p>
-          <label>
+          <label className="reason__label">
             <input
               {...register('reason', { required: 'Select at list one option' })}
               name="reason"
               type="checkbox"
               value="You are cool"
             />
+            <span className="reason__span"> </span>
             You are cool
           </label>
-          <label>
+          <label className="reason__label">
             <input
-              {...register('reason', { required: 'Please select option' })}
+              {...register('reason', { required: 'Select at list one option' })}
               name="reason"
               type="checkbox"
               value="You are my friend"
             />
+            <span className="reason__span"> </span>
             You are my friend
           </label>
-          <label>
+          <label className="reason__label">
             <input
-              {...register('reason', { required: 'Please select option' })}
+              {...register('reason', { required: 'Select at list one option' })}
               name="reason"
               type="checkbox"
               value="I like you"
             />
-            I like you
+            <span className="reason__span"> </span>I like you
           </label>
         </div>
         <div className="requirements">{errors.reason?.message}</div>
 
         <label>
-          Movie advice & message: <br />
+          Movie advice & message:
           <input
             {...register('message', { required: 'Write a movie and/or message' })}
             name="message"
@@ -121,27 +123,29 @@ function Form() {
           <div className="requirements">{errors.message?.message}</div>
         </label>
 
-        <div>
-          <label>
+        <div className="form__radio">
+          <label className="radio__label">
             <input
               {...register('author', { required: 'Choose a signature' })}
               type="radio"
               name="author"
               value="show"
             />
+            <span className="radio__span"> </span>
             Show author
           </label>
-          <label>
+          <label className="radio__label">
             <input
               {...register('author', { required: 'Choose a signature' })}
               type="radio"
               name="author"
               value="anonymous"
             />
+            <span className="radio__span"> </span>
             Anonymous
           </label>
-          <div className="requirements">{errors.author?.message}</div>
         </div>
+        <div className="requirements">{errors.author?.message}</div>
 
         <div>
           <label>
