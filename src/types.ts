@@ -31,3 +31,7 @@ export type TSelect = {
 export type TAnswer = {
   answer: TForm;
 };
+
+export type TCurrentPage = {
+  [key: string]: string;
+};

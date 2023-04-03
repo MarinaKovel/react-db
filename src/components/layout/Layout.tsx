@@ -1,11 +1,20 @@
 import React from 'react';
 import './layout.scss';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { TCurrentPage } from '../../types';
 
 function Layout() {
+  const location = useLocation();
+  const pathNames: TCurrentPage = {
+    '/': 'Main',
+    '/about': 'About us',
+    '/form': 'Form',
+  };
+
   return (
     <>
       <header className="header" role="navigation">
+        <span className="header__current">{pathNames[location.pathname] || 'Not Found'}</span>
         <NavLink to="/" className="navlink">
           Main
         </NavLink>
