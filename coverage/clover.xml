@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1680680620870" clover="3.2.0">
-  <project timestamp="1680680620870" name="All files">
-    <metrics statements="451" coveredstatements="380" conditionals="29" coveredconditionals="17" methods="15" coveredmethods="12" elements="495" coveredelements="409" complexity="0" loc="451" ncloc="451" packages="9" files="14" classes="14"/>
+<coverage generated="1680690582211" clover="3.2.0">
+  <project timestamp="1680690582211" name="All files">
+    <metrics statements="467" coveredstatements="388" conditionals="29" coveredconditionals="17" methods="16" coveredmethods="12" elements="512" coveredelements="417" complexity="0" loc="467" ncloc="467" packages="9" files="14" classes="14"/>
     <package name="src">
-      <metrics statements="72" coveredstatements="22" conditionals="3" coveredconditionals="1" methods="3" coveredmethods="1"/>
+      <metrics statements="77" coveredstatements="22" conditionals="3" coveredconditionals="1" methods="3" coveredmethods="1"/>
       <file name="App.tsx" path="C:\Users\HP\Desktop\RSS-React\react-db\src\App.tsx">
         <metrics statements="22" coveredstatements="22" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -46,7 +46,7 @@
         <line num="13" count="0" type="stmt"/>
       </file>
       <file name="types.ts" path="C:\Users\HP\Desktop\RSS-React\react-db\src\types.ts">
-        <metrics statements="37" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="42" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
@@ -84,6 +84,11 @@
         <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.components.answers">
@@ -169,17 +174,17 @@
       </file>
     </package>
     <package name="src.components.form">
-      <metrics statements="196" coveredstatements="177" conditionals="11" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <metrics statements="190" coveredstatements="170" conditionals="11" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="Form.tsx" path="C:\Users\HP\Desktop\RSS-React\react-db\src\components\form\Form.tsx">
-        <metrics statements="178" coveredstatements="159" conditionals="11" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="172" coveredstatements="152" conditionals="11" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
@@ -190,7 +195,7 @@
         <line num="16" count="2" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
         <line num="18" count="2" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
@@ -230,8 +235,8 @@
         <line num="56" count="2" type="stmt"/>
         <line num="57" count="2" type="stmt"/>
         <line num="58" count="2" type="stmt"/>
-        <line num="59" count="2" type="stmt"/>
-        <line num="60" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="59" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="60" count="2" type="stmt"/>
         <line num="61" count="2" type="stmt"/>
         <line num="62" count="2" type="stmt"/>
         <line num="63" count="2" type="stmt"/>
@@ -240,22 +245,22 @@
         <line num="66" count="2" type="stmt"/>
         <line num="67" count="2" type="stmt"/>
         <line num="68" count="2" type="stmt"/>
-        <line num="69" count="2" type="stmt"/>
-        <line num="70" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="69" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="70" count="2" type="stmt"/>
         <line num="71" count="2" type="stmt"/>
         <line num="72" count="2" type="stmt"/>
         <line num="73" count="2" type="stmt"/>
         <line num="74" count="2" type="stmt"/>
-        <line num="75" count="2" type="stmt"/>
-        <line num="76" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="75" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="76" count="2" type="stmt"/>
         <line num="77" count="2" type="stmt"/>
         <line num="78" count="2" type="stmt"/>
         <line num="79" count="2" type="stmt"/>
         <line num="80" count="2" type="stmt"/>
         <line num="81" count="2" type="stmt"/>
         <line num="82" count="2" type="stmt"/>
-        <line num="83" count="2" type="stmt"/>
-        <line num="84" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="83" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="84" count="2" type="stmt"/>
         <line num="85" count="2" type="stmt"/>
         <line num="86" count="2" type="stmt"/>
         <line num="87" count="2" type="stmt"/>
@@ -288,8 +293,8 @@
         <line num="114" count="2" type="stmt"/>
         <line num="115" count="2" type="stmt"/>
         <line num="116" count="2" type="stmt"/>
-        <line num="117" count="2" type="stmt"/>
-        <line num="118" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="117" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="118" count="2" type="stmt"/>
         <line num="119" count="2" type="stmt"/>
         <line num="120" count="2" type="stmt"/>
         <line num="121" count="2" type="stmt"/>
@@ -297,8 +302,8 @@
         <line num="123" count="2" type="stmt"/>
         <line num="124" count="2" type="stmt"/>
         <line num="125" count="2" type="stmt"/>
-        <line num="126" count="2" type="stmt"/>
-        <line num="127" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="126" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="127" count="2" type="stmt"/>
         <line num="128" count="2" type="stmt"/>
         <line num="129" count="2" type="stmt"/>
         <line num="130" count="2" type="stmt"/>
@@ -322,8 +327,8 @@
         <line num="148" count="2" type="stmt"/>
         <line num="149" count="2" type="stmt"/>
         <line num="150" count="2" type="stmt"/>
-        <line num="151" count="2" type="stmt"/>
-        <line num="152" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="151" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="152" count="2" type="stmt"/>
         <line num="153" count="2" type="stmt"/>
         <line num="154" count="2" type="stmt"/>
         <line num="155" count="2" type="stmt"/>
@@ -333,8 +338,8 @@
         <line num="159" count="2" type="stmt"/>
         <line num="160" count="2" type="stmt"/>
         <line num="161" count="2" type="stmt"/>
-        <line num="162" count="2" type="stmt"/>
-        <line num="163" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="162" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="163" count="2" type="stmt"/>
         <line num="164" count="2" type="stmt"/>
         <line num="165" count="2" type="stmt"/>
         <line num="166" count="2" type="stmt"/>
@@ -342,14 +347,8 @@
         <line num="168" count="2" type="stmt"/>
         <line num="169" count="2" type="stmt"/>
         <line num="170" count="2" type="stmt"/>
-        <line num="171" count="2" type="stmt"/>
-        <line num="172" count="2" type="stmt"/>
-        <line num="173" count="2" type="stmt"/>
-        <line num="174" count="2" type="stmt"/>
-        <line num="175" count="2" type="stmt"/>
-        <line num="176" count="2" type="stmt"/>
-        <line num="177" count="1" type="stmt"/>
-        <line num="178" count="1" type="stmt"/>
+        <line num="171" count="1" type="stmt"/>
+        <line num="172" count="1" type="stmt"/>
       </file>
       <file name="Select.tsx" path="C:\Users\HP\Desktop\RSS-React\react-db\src\components\form\Select.tsx">
         <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -453,15 +452,32 @@
       </file>
     </package>
     <package name="src.pages">
-      <metrics statements="32" coveredstatements="32" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
+      <metrics statements="49" coveredstatements="47" conditionals="3" coveredconditionals="3" methods="4" coveredmethods="3"/>
       <file name="Formpage.tsx" path="C:\Users\HP\Desktop\RSS-React\react-db\src\pages\Formpage.tsx">
-        <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="23" coveredstatements="21" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="6" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
       </file>
       <file name="Mainpage.tsx" path="C:\Users\HP\Desktop\RSS-React\react-db\src\pages\Mainpage.tsx">
         <metrics statements="13" coveredstatements="13" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>

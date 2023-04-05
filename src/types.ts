@@ -35,3 +35,8 @@ export type TAnswer = {
 export type TCurrentPage = {
   [key: string]: string;
 };
+
+export type TAddAnswer = {
+  answers: TForm[];
+  addAnswer: (value: TForm[]) => void;
+};
