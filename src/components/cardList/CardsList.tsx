@@ -1,14 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../card/Card';
-import moviesJson from '../../assets/movies.json';
 import './cardList.scss';
+import { API } from '../../api/api';
+import { TMovies, TMoviesResults, TGenre, TGenres } from '../../types';
 
 function CardsList() {
-  const cards = moviesJson.movies.map((movie) => <Card key={movie.id} movie={movie} />);
+  const [movies, setMovies] = useState<TMoviesResults[]>();
+  const [genres, setGenres] = useState<TGenre[]>();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      API.getMovies().then((data: void | TMovies) => {
+        if (data && data.results) {
+          setMovies(data.results);
+          setIsLoaded(true);
+        }
+      });
+      API.getGenres().then((data: void | TGenres) => {
+        if (data) {
+          setGenres(data.genres);
+        }
+      });
+    }, 1000);
+  }, []);
 
   return (
     <section className="cards-container" role="list">
-      {cards}
+      {!isLoaded ? (
+        <div>Loading...</div>
+      ) : (
+        movies?.map((movie) => (
+          <Card
+            key={movie.id}
+            title={movie.title || movie.name}
+            vote_average={movie.vote_average}
+            release_date={movie.release_date || movie.first_air_date}
+            poster_path={movie.poster_path}
+            genre={
+              genres?.find((genre) => movie.genre_ids && genre.id === movie.genre_ids[0])?.name
+            }
+          />
+        ))
+      )}
     </section>
   );
 }

@@ -1,21 +1,22 @@
 import React from 'react';
 import './card.scss';
-import { TMovieList } from '../../types';
+import { TMoviesResults } from '../../types';
 
-function Card(props: TMovieList) {
+function Card(props: TMoviesResults) {
+  const baseImgUrl = 'https://image.tmdb.org/t/p/w500/';
+
   return (
     <div className="card" role="listitem">
-      <p className="card__rating">{props.movie.rating}</p>
-      <img src={props.movie.poster} alt="poster" className="card__poster" />
+      <p className="card__rating">{props.vote_average?.toFixed(1)}</p>
+      {props.poster_path && (
+        <img src={`${baseImgUrl}${props.poster_path}`} alt="poster" className="card__poster" />
+      )}
       <div>
-        <span>{props.movie.year} • </span>
-        <span>{props.movie.name}</span>
+        {props.release_date && <span>{props.release_date.substr(0, 4)} • </span>}
+        <span>{props.title}</span>
       </div>
       <span className="card__description">
-        <u>Genre:</u> {props.movie.genre}
-      </span>
-      <span className="card__description">
-        <u>Stars:</u> {props.movie.stars}
+        <u>Genre:</u> {props.genre}
       </span>
     </div>
   );

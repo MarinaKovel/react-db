@@ -1,0 +1,27 @@
+import { TMovies, TGenres } from '../types';
+
+const BASE_URL = 'https://api.themoviedb.org/3';
+const MOVIES = '/trending/all/day';
+const GENRES = '/genre/movie/list';
+const API_KEY = '8eba9e05fcfc313e0babba5316909339';
+// https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+// https://api.themoviedb.org/3/movie/550?api_key=8eba9e05fcfc313e0babba5316909339
+
+export const API = {
+  getMovies() {
+    return fetch(`${BASE_URL}${MOVIES}?api_key=${API_KEY}`, {
+      method: 'GET',
+    })
+      .then((response: Response): Promise<TMovies> => response.json())
+      .catch((error: Error) => console.log(error));
+  },
+  getGenres() {
+    return fetch(`${BASE_URL}${GENRES}?api_key=${API_KEY}`, {
+      method: 'GET',
+    })
+      .then((response: Response): Promise<TGenres> => response.json())
+      .catch((error: Error) => console.log(error));
+  },
+};
+
+export default API;
