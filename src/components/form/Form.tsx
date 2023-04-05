@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import './form.scss';
 import Answers from '../answers/Answers';
@@ -14,10 +14,14 @@ function Form() {
     reset,
   } = useForm<TForm>();
   const [answers, setAnswers] = useState<TForm[]>([]);
+  const [isSaved, setIsSaved] = useState(false);
 
   const onSubmit = handleSubmit((data: TForm) => {
     const link = URL.createObjectURL(data.image[0] as unknown as Blob);
-    alert('Data has been saved');
+    setIsSaved(true);
+    setTimeout(() => {
+      setIsSaved(false);
+    }, 1000);
     setAnswers([
       ...answers,
       {
@@ -161,6 +165,7 @@ function Form() {
         </div>
 
         <button type="submit">Submit</button>
+        {isSaved && <p>Data has been saved</p>}
       </form>
 
       {answers.map((el, i) => (

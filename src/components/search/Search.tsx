@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, ChangeEvent } from 'react';
 
 function Search() {
   const [search, setSearch] = useState(localStorage.getItem('search') || '');
   const inputRef = useRef(search);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setSearch(event.target.value);
   }
 

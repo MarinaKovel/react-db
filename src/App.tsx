@@ -1,5 +1,4 @@
 import './index.scss';
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Mainpage from './pages/Mainpage';

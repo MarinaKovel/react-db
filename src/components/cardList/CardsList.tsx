@@ -1,4 +1,3 @@
-import React from 'react';
 import Card from '../card/Card';
 import moviesJson from '../../assets/movies.json';
 import './cardList.scss';

@@ -38,11 +38,11 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
-    'no-alert': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'react/destructuring-assignment': 'off',
     'react/no-array-index-key': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'no-restricted-imports': 'error',
   },
   settings: {
     react: {
