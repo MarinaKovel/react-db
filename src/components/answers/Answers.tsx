@@ -1,4 +1,3 @@
-import React from 'react';
 import { TAnswer } from '../../types';
 
 function Answers(props: TAnswer) {

@@ -36,11 +36,25 @@ export type TCurrentPage = {
   [key: string]: string;
 };
 
+export type TAddAnswer = {
+  answers: TForm[];
+  addAnswer: (value: TForm[]) => void;
+};
+
 export type TMovies = {
   page: number;
   results: TMoviesResults[];
   total_pages: number;
   total_results: number;
+};
+
+export type TDoSearch = {
+  searchResults: TMovies | undefined;
+  doSearch: (value: TMovies) => void;
+};
+
+export type TCardList = {
+  searchResults: TMovies | undefined;
 };
 
 export type TMoviesResults = {

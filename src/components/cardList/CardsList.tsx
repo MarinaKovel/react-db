@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '../card/Card';
 import './cardList.scss';
 import { API } from '../../api/api';
-import { TMovies, TMoviesResults, TGenre, TGenres } from '../../types';
+import { TMoviesResults, TGenre, TGenres, TCardList } from '../../types';
 
-function CardsList() {
+function CardsList(props: TCardList) {
   const [movies, setMovies] = useState<TMoviesResults[]>();
   const [genres, setGenres] = useState<TGenre[]>();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      API.getMovies().then((data: void | TMovies) => {
-        if (data && data.results) {
-          setMovies(data.results);
-          setIsLoaded(true);
-        }
-      });
-      API.getGenres().then((data: void | TGenres) => {
-        if (data) {
-          setGenres(data.genres);
-        }
-      });
-    }, 1000);
+    setMovies(props.searchResults?.results);
+    setIsLoaded(!!props.searchResults);
+  }, [props]);
+
+  useEffect(() => {
+    API.getGenres().then((data: void | TGenres) => {
+      if (data) setGenres(data.genres);
+    });
   }, []);
 
   return (

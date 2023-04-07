@@ -1,29 +1,54 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, ChangeEvent, FormEvent } from 'react';
+import { API } from '../../api/api';
+import { TMovies, TDoSearch } from '../../types';
 
-function Search() {
-  const [search, setSearch] = useState(localStorage.getItem('search') || '');
-  const inputRef = useRef(search);
+function Search(props: TDoSearch) {
+  const [inputValue, setInputValue] = useState(localStorage.getItem('search') || '');
+  const [searchValue, setSearchValue] = useState('');
+  const inputRef = useRef(inputValue);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearch(event.target.value);
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setInputValue(event.target.value);
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSearchValue(inputValue);
   }
 
   useEffect(() => {
-    inputRef.current = search;
-  }, [search]);
+    inputRef.current = inputValue;
+  }, [inputValue]);
 
   useEffect(() => {
-    return () => {
-      localStorage.setItem('search', inputRef.current);
-    };
+    return () => localStorage.setItem('search', inputRef.current);
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (inputValue) {
+        API.search(inputValue).then((data: void | TMovies) => {
+          if (data && data.results) {
+            props.doSearch(data);
+          }
+        });
+      } else {
+        API.getMovies().then((data: void | TMovies) => {
+          if (data && data.results) {
+            props.doSearch(data);
+          }
+        });
+      }
+    }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue]);
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="search"
-        value={search}
-        ref={() => search}
+        value={inputValue}
+        ref={() => inputValue}
         placeholder="Search"
         onChange={handleChange}
       />

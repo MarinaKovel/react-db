@@ -1,8 +1,8 @@
-import React from 'react';
+import { LegacyRef, forwardRef } from 'react';
 import { TSelect } from 'types';
 
-const Select = React.forwardRef(
-  ({ onChange, name, label }: TSelect, ref: React.LegacyRef<HTMLSelectElement> | undefined) => (
+const Select = forwardRef(
+  ({ onChange, name, label }: TSelect, ref: LegacyRef<HTMLSelectElement> | undefined) => (
     <label>
       {label}
       <select name={name} ref={ref} onChange={onChange} className="form__select">
