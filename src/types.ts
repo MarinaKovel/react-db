@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type TMovieList = {
   movie: TMovie;
 };
@@ -64,6 +66,7 @@ export type TMoviesResults = {
   release_date?: string;
   first_air_date?: string;
   genre_ids?: number[];
+  genres?: TGenre[];
   genre?: string;
   id?: number;
   original_title?: string;
@@ -75,6 +78,8 @@ export type TMoviesResults = {
   vote_count?: number;
   video?: boolean;
   vote_average?: number;
+  budget?: number;
+  open?: (value: boolean) => void;
 };
 
 export type TGenre = {
@@ -84,4 +89,11 @@ export type TGenre = {
 
 export type TGenres = {
   genres: TGenre[];
+};
+
+export type TModal = {
+  open: boolean;
+  children?: React.ReactNode;
+  movie: TMoviesResults;
+  onClose: () => void;
 };

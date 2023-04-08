@@ -6,8 +6,6 @@ const MOVIES = '/trending/all/day';
 const GENRES = '/genre/movie/list';
 const SEARCH = '/search/movie';
 const API_KEY = '8eba9e05fcfc313e0babba5316909339';
-// https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
-// https://api.themoviedb.org/3/movie/550?api_key=8eba9e05fcfc313e0babba5316909339
 
 export const API = {
   getMovies() {

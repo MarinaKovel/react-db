@@ -40,6 +40,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'no-alert': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
     'react/destructuring-assignment': 'off',
     'react/no-array-index-key': 'off',
     'react/jsx-props-no-spreading': 'off',

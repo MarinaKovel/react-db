@@ -14,6 +14,7 @@ function Search(props: TDoSearch) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSearchValue(inputValue);
+    localStorage.setItem('search', inputRef.current);
   }
 
   useEffect(() => {
@@ -21,22 +22,14 @@ function Search(props: TDoSearch) {
   }, [inputValue]);
 
   useEffect(() => {
-    return () => localStorage.setItem('search', inputRef.current);
-  }, []);
-
-  useEffect(() => {
     setTimeout(() => {
       if (inputValue) {
         API.search(inputValue).then((data: void | TMovies) => {
-          if (data && data.results) {
-            props.doSearch(data);
-          }
+          if (data && data.results) props.doSearch(data);
         });
       } else {
         API.getMovies().then((data: void | TMovies) => {
-          if (data && data.results) {
-            props.doSearch(data);
-          }
+          if (data && data.results) props.doSearch(data);
         });
       }
     }, 1000);
