@@ -47,4 +47,10 @@ export const handlers = [
       return res(ctx.status(200), ctx.json(genres));
     }
   ),
+  rest.get(
+    `https://api.themoviedb.org/3/movie/594767?api_key=8eba9e05fcfc313e0babba5316909339`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json(searchResults.results[0]));
+    }
+  ),
 ];

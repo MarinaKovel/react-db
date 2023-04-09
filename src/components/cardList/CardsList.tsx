@@ -28,6 +28,7 @@ function CardsList(props: TCardList) {
         movies?.map((movie) => (
           <Card
             key={movie.id}
+            id={movie.id}
             title={movie.title || movie.name}
             vote_average={movie.vote_average}
             release_date={movie.release_date || movie.first_air_date}
@@ -35,10 +36,10 @@ function CardsList(props: TCardList) {
             genre={
               genres?.find((genre) => movie.genre_ids && genre.id === movie.genre_ids[0])?.name
             }
-            overview={movie.overview}
-            popularity={movie.popularity}
-            original_title={movie.original_title}
-            original_language={movie.original_language}
+            // overview={movie.overview}
+            // popularity={movie.popularity}
+            // original_title={movie.original_title}
+            // original_language={movie.original_language}
           />
         ))
       )}

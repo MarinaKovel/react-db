@@ -23,9 +23,7 @@ function Modal(props: TModal) {
               alt="poster"
               className="modal__poster"
             />
-            <span className="modal__text">
-              {props.movie.release_date?.substr(0, 4)} • {props.movie.genre}
-            </span>
+            <span className="modal__text">{props.movie.release_date?.substr(0, 4)}</span>
           </div>
           <div className="modal__right">
             <p className="modal__text">{props.movie.overview}</p>
