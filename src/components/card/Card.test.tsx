@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import moviesJson from '../assets/movies.json';
+import moviesJson from '../../assets/movies.json';
 import Card from './Card';
 
 describe('Card', () => {

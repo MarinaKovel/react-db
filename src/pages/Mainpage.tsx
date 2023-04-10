@@ -1,7 +1,6 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import Search from '../components/Search';
-import CardsList from '../components/CardsList';
+import Search from '../components/search/Search';
+import CardsList from '../components/cardList/CardsList';
 
 class Mainpage extends React.Component {
   render() {

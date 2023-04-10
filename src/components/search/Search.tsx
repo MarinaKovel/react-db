@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 
 class Search extends React.Component<object, { search: string }> {

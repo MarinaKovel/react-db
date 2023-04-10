@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import './layout.scss';
 import { NavLink, Outlet } from 'react-router-dom';
@@ -13,6 +12,9 @@ class Layout extends React.Component {
           </NavLink>
           <NavLink to="/about" className="navlink">
             About us
+          </NavLink>
+          <NavLink to="/form" className="navlink">
+            Form
           </NavLink>
         </header>
         <Outlet />
