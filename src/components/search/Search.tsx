@@ -1,28 +1,34 @@
-import React from 'react';
+import { useState, useRef, useEffect, ChangeEvent } from 'react';
 
-class Search extends React.Component<object, { search: string }> {
-  constructor(props: object) {
-    super(props);
-    this.state = { search: localStorage.getItem('search') || '' };
+function Search() {
+  const [search, setSearch] = useState(localStorage.getItem('search') || '');
+  const inputRef = useRef(search);
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setSearch(event.target.value);
   }
 
-  componentWillUnmount() {
-    const { search } = this.state;
-    localStorage.setItem('search', search);
-  }
+  useEffect(() => {
+    inputRef.current = search;
+  }, [search]);
 
-  onChange = (event: unknown) => {
-    this.setState({ search: ((event as Event).target as HTMLInputElement).value });
-  };
+  useEffect(() => {
+    return () => {
+      localStorage.setItem('search', inputRef.current);
+    };
+  }, []);
 
-  render() {
-    const { search } = this.state;
-    return (
-      <form>
-        <input type="search" value={search} placeholder="Search" onChange={this.onChange} />
-      </form>
-    );
-  }
+  return (
+    <form>
+      <input
+        type="search"
+        value={search}
+        ref={() => search}
+        placeholder="Search"
+        onChange={handleChange}
+      />
+    </form>
+  );
 }
 
 export default Search;

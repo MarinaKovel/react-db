@@ -7,6 +7,7 @@
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-width: 550px;
   padding: 20px;
   font-size: 0.7em;
@@ -26,7 +27,8 @@
 .requirements {
   font-size: 0.5rem;
   color: #f4f750;
-  opacity: 0;
+  opacity: 1;
+  height: 1rem;
 }
 .advice {
   border: 3px solid #f4f750;
@@ -36,4 +38,72 @@
 }
 .advice__question {
   color:#f4f750;
+}
+.form__select {
+  width: 250px;
+  align-self: center;
+  height: 35px;
+}
+.reason__label,
+.radio__label {
+  display: block;
+  position: relative;
+  height: 35px;
+  line-height: 40px;
+  padding-left: 40px;
+  margin: 0 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.radio__label {
+  padding-left: 45px;
+}
+.reason__label input,
+.radio__label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.reason__label input:focus {
+  border: 3px solid #2AB5C5;
+}
+.reason__span,
+.radio__span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+  border: 3px solid #f4f750;
+  background-color: #ffffff;
+}
+.radio__span {
+  border-radius: 50%;
+}
+.reason__span:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.reason__label input:checked ~ .reason__span:after {
+  display: block;
+}
+.reason__label .reason__span:after {
+  top: 0px;
+  left: 0px;
+  width: 30px;
+  height: 30px;
+  background: url('https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/lemon_PNG25205.png') 50% 50%/ auto 75% no-repeat;
+}
+.form__radio {
+  display: flex;
+}
+.radio__label input:checked ~ .radio__span {
+  background: url('https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/Lemon-circle.png') 50% 50%/ auto 120% no-repeat;
 }
