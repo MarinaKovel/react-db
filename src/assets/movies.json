@@ -1,0 +1,93 @@
+{"movies":[
+    {
+      "id": 1,
+      "name": "Lion King",
+      "year": "1994",
+      "genre": "Animation",
+      "rating": 8.5,
+      "stars": "Matthew Broderick (voice), Jeremy Irons (voice), James Earl Jones (voice)",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/lion-king.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Mad Max",
+      "year": "2015",
+      "genre": "Action",
+      "rating": 8.1,
+      "stars": "Tom Hardy, Charlize Theron, Nicholas Hoult",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/mad-max.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Finding Nemo",
+      "year": "2003",
+      "genre": "Animation",
+      "rating": 8.2,
+      "stars": "Albert Brooks (voice), Ellen DeGeneres (voice), Alexander Gould (voice)",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/nemo.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Like Stars on Earth",
+      "year": "2007",
+      "genre": "Drama",
+      "rating": 8.3,
+      "stars": "Darsheel Safary, Aamir Khan, Tisca Chopra",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/like-star-on-earth.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Green book",
+      "year": "2018",
+      "genre": "Comedy",
+      "rating": 8.2,
+      "stars": "Viggo Mortensen, Mahershala Ali, Linda Cardellini",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/green-book.jpg"
+    },
+    {
+      "id": 6,
+      "name": "3 idiots",
+      "year": "2009",
+      "genre": "Comedy",
+      "rating": 8.4,
+      "stars": "Aamir Khan, Madhavan, Mona Singh",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/idiots.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Stand by Me",
+      "year": "1986",
+      "genre": "Adventure",
+      "rating": 8.1,
+      "stars": "Will Wheaton, River Phoenix, Corey Feldman",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/stand-by-me.jpg"
+    },
+    {
+      "id": 8,
+      "name": "The Help",
+      "year": "2011",
+      "genre": "Drama",
+      "rating": 8.1,
+      "stars": "Viola Davis, Emma Stone, Octavia Spencer",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/help.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Heat",
+      "year": "1995",
+      "genre": "Action",
+      "rating": 8.3,
+      "stars": "Al Pacino, Robert De Niro, Val Kilmer",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/heat.jpg"
+    },
+    {
+      "id": 10,
+      "name": "A Beautiful Mind",
+      "year": "2001",
+      "genre": "Biography",
+      "rating": 8.2,
+      "stars": "Russell Crowe, Ed Harris, Jennifer Connelly",
+      "poster": "https://raw.githubusercontent.com/MarinaKovel/onlinestoredata/main/movies/beautiful-mind.jpg"
+    }
+  ]
+  }
