@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Form from './Form';
-import { TForm } from '../../types';
+import { TForm } from 'types';
+import { Form } from '@components';
 
 const answers: TForm[] = [];
 const addAnswer: (value: TForm[]) => void = () => {};

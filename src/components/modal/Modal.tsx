@@ -1,8 +1,9 @@
 import { createPortal } from 'react-dom';
-import { TModal } from '../../types';
+import { TModal } from 'types';
+import { Button } from '@components';
 import './modal.scss';
 
-function Modal(props: TModal) {
+export function Modal(props: TModal) {
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500/';
 
   if (!props.open) return null;
@@ -11,9 +12,7 @@ function Modal(props: TModal) {
     <>
       <div className="modal__bg" onClick={props.onClose} role="complementary" />
       <div className="modal__window">
-        <button type="button" className="modal__close" onClick={props.onClose}>
-          x
-        </button>
+        <Button name="x" className="modal__close" onClick={props.onClose} />
         <div className="modal__title">{props.movie.title}</div>
         <div className="modal__container">
           <div className="modal__left">
@@ -44,5 +43,3 @@ function Modal(props: TModal) {
     document.body
   );
 }
-
-export default Modal;

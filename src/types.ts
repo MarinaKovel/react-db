@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type TMovieList = {
   movie: TMovie;
 };
@@ -28,6 +26,24 @@ export type TSelect = {
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   name: string;
   label: string;
+  error?: string;
+};
+
+export type TInput = {
+  name: string;
+  type: string;
+  label: string;
+  value?: string;
+  error?: string;
+  accept?: string;
+  ref?: () => void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+};
+
+export type TButton = {
+  name: string;
+  className?: string;
+  onClick?: () => void;
 };
 
 export type TAnswer = {

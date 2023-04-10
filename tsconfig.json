@@ -15,6 +15,12 @@
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "baseUrl": "./src",
+    "paths": {
+      "@api/*": ["./api/*"],
+      "@mocks/*": ["./mocks/*"],
+      "@pages": ["./pages/index"],
+      "@components": ["./components/index"]
+    },
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"

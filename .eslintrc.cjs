@@ -45,6 +45,7 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     'react/no-array-index-key': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'import/prefer-default-export': 'off',
   },
   settings: {
     react: {

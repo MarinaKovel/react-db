@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import Search from '../components/search/Search';
-import CardsList from '../components/cardList/CardsList';
-import { TMovies } from '../types';
+import { TMovies } from 'types';
+import { Search, CardsList } from '@components';
 
-function Mainpage() {
+export function Mainpage() {
   const [searchResults, setSearchResults] = useState<TMovies>();
 
   const doSearch = (searchVal: TMovies) => setSearchResults(searchVal);
@@ -16,4 +15,3 @@ function Mainpage() {
     </>
   );
 }
-export default Mainpage;

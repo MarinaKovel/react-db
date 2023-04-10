@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect, ChangeEvent, FormEvent } from 'react';
-import { API } from '../../api/api';
-import { TMovies, TDoSearch } from '../../types';
+import { API } from '@api/API';
+import { TMovies, TDoSearch } from 'types';
 
-function Search(props: TDoSearch) {
+export function Search(props: TDoSearch) {
   const [inputValue, setInputValue] = useState(localStorage.getItem('search') || '');
   const [searchValue, setSearchValue] = useState('');
   const inputRef = useRef(inputValue);
@@ -48,5 +48,3 @@ function Search(props: TDoSearch) {
     </form>
   );
 }
-
-export default Search;

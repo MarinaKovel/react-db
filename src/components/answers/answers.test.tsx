@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Answers from './Answers';
+import { Answers } from '@components';
 
 const answer = {
   from: 'Name from',

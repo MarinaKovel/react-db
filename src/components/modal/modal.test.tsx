@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { searchResults } from '../../mocks/handlers';
-import Modal from './Modal';
+import { searchResults } from '@mocks/handlers';
+import { Modal } from '@components';
 
 describe('Modal', () => {
   it('Renders modal window', () => {

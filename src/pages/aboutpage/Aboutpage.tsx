@@ -1,6 +1,6 @@
-import './about.scss';
+import './aboutpage.scss';
 
-function Aboutpage() {
+export function Aboutpage() {
   return (
     <>
       <div className="about">
@@ -16,5 +16,3 @@ function Aboutpage() {
     </>
   );
 }
-
-export default Aboutpage;

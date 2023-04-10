@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { genres } from '../../mocks/handlers';
-import Card from './Card';
+import { genres } from '@mocks/handlers';
+import { Card } from '@components';
 
 describe('Card', () => {
   it('Renders card', () => {

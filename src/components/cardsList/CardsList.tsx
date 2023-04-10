@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import Card from '../card/Card';
+import { API } from '@api/API';
+import { TMoviesResults, TGenre, TGenres, TCardList } from 'types';
+import { Card } from '@components';
 import './cardList.scss';
-import { API } from '../../api/api';
-import { TMoviesResults, TGenre, TGenres, TCardList } from '../../types';
 
-function CardsList(props: TCardList) {
+export function CardsList(props: TCardList) {
   const [movies, setMovies] = useState<TMoviesResults[]>();
   const [genres, setGenres] = useState<TGenre[]>();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,5 +42,3 @@ function CardsList(props: TCardList) {
     </section>
   );
 }
-
-export default CardsList;

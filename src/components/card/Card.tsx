@@ -1,10 +1,10 @@
-import './card.scss';
 import { useState, useEffect } from 'react';
-import { TMoviesResults } from '../../types';
-import Modal from '../modal/Modal';
-import { API } from '../../api/api';
+import { TMoviesResults } from 'types';
+import { API } from '@api/API';
+import { Modal } from '@components';
+import './card.scss';
 
-function Card(props: TMoviesResults) {
+export function Card(props: TMoviesResults) {
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500/';
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [id, setId] = useState<number>();
@@ -41,5 +41,3 @@ function Card(props: TMoviesResults) {
     </div>
   );
 }
-
-export default Card;

@@ -1,33 +1,37 @@
 /* eslint-disable no-console */
-import { TMovies, TGenres, TMoviesResults } from '../types';
+import { TMovies, TGenres, TMoviesResults } from 'types';
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-const MOVIES = '/trending/all/day';
-const MOVIE = '/movie/';
-const GENRES = '/genre/movie/list';
-const SEARCH = '/search/movie';
-const API_KEY = '8eba9e05fcfc313e0babba5316909339';
+enum URL {
+  BASE_URL = 'https://api.themoviedb.org/3',
+  MOVIES = '/trending/all/day',
+  MOVIE = '/movie/',
+  GENRES = '/genre/movie/list',
+  SEARCH = '/search/movie',
+  API_KEY = '8eba9e05fcfc313e0babba5316909339',
+}
 
 export const API = {
   getMovieById(id: number) {
-    return fetch(`${BASE_URL}${MOVIE}${id}?api_key=${API_KEY}`, {
+    return fetch(`${URL.BASE_URL}${URL.MOVIE}${id}?api_key=${URL.API_KEY}`, {
       method: 'GET',
     })
       .then((response: Response): Promise<TMoviesResults> => response.json())
       .catch((error: Error) => console.log(error));
   },
   getMovies() {
-    return fetch(`${BASE_URL}${MOVIES}?api_key=${API_KEY}`, { method: 'GET' })
+    return fetch(`${URL.BASE_URL}${URL.MOVIES}?api_key=${URL.API_KEY}`, { method: 'GET' })
       .then((response: Response): Promise<TMovies> => response.json())
       .catch((error: Error) => console.log(error));
   },
   getGenres() {
-    return fetch(`${BASE_URL}${GENRES}?api_key=${API_KEY}`, { method: 'GET' })
+    return fetch(`${URL.BASE_URL}${URL.GENRES}?api_key=${URL.API_KEY}`, { method: 'GET' })
       .then((response: Response): Promise<TGenres> => response.json())
       .catch((error: Error) => console.log(error));
   },
   search(searchValue: string) {
-    return fetch(`${BASE_URL}${SEARCH}?api_key=${API_KEY}&query=${searchValue}`, { method: 'GET' })
+    return fetch(`${URL.BASE_URL}${URL.SEARCH}?api_key=${URL.API_KEY}&query=${searchValue}`, {
+      method: 'GET',
+    })
       .then((response: Response): Promise<TMovies> => response.json())
       .catch((error: Error) => console.log(error));
   },

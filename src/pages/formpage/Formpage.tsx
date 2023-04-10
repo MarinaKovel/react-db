@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import Form from '../components/form/Form';
-import Answers from '../components/answers/Answers';
-import { TForm } from '../types';
+import { TForm } from 'types';
+import { Form, Answers } from '@components';
 
-function Formpage() {
+export function Formpage() {
   const [answers, setAnswers] = useState<TForm[]>([]);
 
   const addAnswer = (allAnswers: TForm[]) => {
@@ -19,5 +18,3 @@ function Formpage() {
     </>
   );
 }
-
-export default Formpage;

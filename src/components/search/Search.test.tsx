@@ -1,8 +1,8 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { TMovies } from '../../types';
-import { searchResults } from '../../mocks/handlers';
-import Search from './Search';
+import { TMovies } from 'types';
+import { searchResults } from '@mocks/handlers';
+import { Search } from '@components';
 
 const doSearch: (value: TMovies) => void = () => {};
 
