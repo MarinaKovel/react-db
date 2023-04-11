@@ -1,4 +1,4 @@
-import './index.scss';
+import '../index.scss';
 import { Routes, Route } from 'react-router-dom';
 import { Mainpage, Aboutpage, Formpage, Notfoundpage } from '@pages';
 import { Layout } from '@components';

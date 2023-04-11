@@ -28,29 +28,23 @@ export const searchResults = {
 
 export const genres = [{ id: 28, name: 'Action' }];
 
+const apiKey = 'api_key=8eba9e05fcfc313e0babba5316909339';
+const apiKeyParams = new URLSearchParams(apiKey);
+
+const search = { api_key: apiKey, query: 'Shazam' };
+const searchParams = new URLSearchParams(search);
+
 export const handlers = [
-  rest.get(
-    `https://api.themoviedb.org/3/trending/all/day/api_key=8eba9e05fcfc313e0babba5316909339`,
-    (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(searchResults));
-    }
-  ),
-  rest.get(
-    `https://api.themoviedb.org/3/search/movie?api_key=8eba9e05fcfc313e0babba5316909339&query=Shazam`,
-    (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(searchResults));
-    }
-  ),
-  rest.get(
-    `https://api.themoviedb.org/3/genre/movie/list?api_key=8eba9e05fcfc313e0babba5316909339`,
-    (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(genres));
-    }
-  ),
-  rest.get(
-    `https://api.themoviedb.org/3/movie/594767?api_key=8eba9e05fcfc313e0babba5316909339`,
-    (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(searchResults.results[0]));
-    }
-  ),
+  rest.get(`https://api.themoviedb.org/3/trending/all/day${apiKeyParams}`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(searchResults));
+  }),
+  rest.get(`https://api.themoviedb.org/3/search/movie${searchParams}`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(searchResults));
+  }),
+  rest.get(`https://api.themoviedb.org/3/genre/movie/list`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(genres));
+  }),
+  rest.get(`https://api.themoviedb.org/3/movie/594767${apiKeyParams}`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(searchResults.results[0]));
+  }),
 ];
