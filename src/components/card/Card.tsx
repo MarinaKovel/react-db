@@ -1,43 +1,25 @@
-import { useState, useEffect } from 'react';
-import { TMoviesResults } from 'types';
-import { API } from '@api/API';
+import { useState } from 'react';
+import { TCard } from 'types';
 import { Modal } from '@components';
+import { characterAPI } from '../../app/services/CharacterService';
 import './card.scss';
 
-export function Card(props: TMoviesResults) {
-  const baseImgUrl = 'https://image.tmdb.org/t/p/w500/';
+export function Card(props: TCard) {
+  const { data: card } = characterAPI.useFetchSearchResultsQuery(props.id.toString());
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [id, setId] = useState<number>();
-  const [movie, setMovie] = useState<TMoviesResults>();
-
-  function handleClick() {
-    setId(props.id);
-    setIsModalOpen(true);
-  }
-
-  useEffect(() => {
-    if (id) {
-      API.getMovieById(id).then((data: void | TMoviesResults) => {
-        if (data) setMovie(data);
-      });
-    }
-  }, [id]);
 
   return (
-    <div className="card" id={props.id?.toString()} role="listitem" onClickCapture={handleClick}>
-      {movie && <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} movie={movie} />}
+    <div className="card" role="listitem" onClickCapture={() => setIsModalOpen(true)}>
+      {card && <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} card={card} />}
 
-      <p className="card__rating">{props.vote_average?.toFixed(1)}</p>
-      {props.poster_path && (
-        <img src={`${baseImgUrl}${props.poster_path}`} alt="poster" className="card__poster" />
-      )}
-      <div>
-        {props.release_date && <span>{props.release_date.substr(0, 4)} • </span>}
-        <span>{props.title}</span>
-      </div>
-      <span className="card__description">
-        <u>Genre:</u> {props.genre}
-      </span>
+      {card && <img src={card.image} alt="poster" className="card__poster" />}
+      <p>{card && card.name}</p>
+      <br />
+      <p className="card__description">
+        {card && `${card.species} • ${card.gender}`}
+        <br />
+        <u>Origin:</u> {card && card.origin.name}
+      </p>
     </div>
   );
 }

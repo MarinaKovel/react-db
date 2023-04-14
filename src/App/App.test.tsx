@@ -10,7 +10,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
-    expect(screen.getByText(/Movies/i)).toBeInTheDocument();
+    expect(screen.getByText(/Rick and Morty/i)).toBeInTheDocument();
     expect(screen.getByRole('list')).toBeInTheDocument();
   });
 
@@ -20,7 +20,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
-    expect(screen.getByText(/This SPA Movie database/i)).toBeInTheDocument();
+    expect(screen.getByText(/This SPA 'Rick and Morty' database/i)).toBeInTheDocument();
   });
 
   it('Renders Form page', () => {

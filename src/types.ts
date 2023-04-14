@@ -1,16 +1,3 @@
-export type TMovieList = {
-  movie: TMovie;
-};
-
-export type TMovie = {
-  name: string;
-  year: string;
-  genre: string;
-  rating: number;
-  stars: string;
-  poster: string;
-};
-
 export type TForm = {
   from: string;
   to: string;
@@ -46,6 +33,10 @@ export type TButton = {
   onClick?: () => void;
 };
 
+export type TAnswers = {
+  answers: TForm[];
+};
+
 export type TAnswer = {
   answer: TForm;
 };
@@ -54,62 +45,36 @@ export type TCurrentPage = {
   [key: string]: string;
 };
 
-export type TAddAnswer = {
-  answers: TForm[];
-  addAnswer: (value: TForm[]) => void;
-};
-
-export type TMovies = {
-  page: number;
-  results: TMoviesResults[];
-  total_pages: number;
-  total_results: number;
-};
-
-export type TDoSearch = {
-  searchResults: TMovies | undefined;
-  doSearch: (value: TMovies) => void;
-};
-
-export type TCardList = {
-  searchResults: TMovies | undefined;
-};
-
-export type TMoviesResults = {
-  poster_path?: string | null;
-  adult?: boolean;
-  overview?: string;
-  release_date?: string;
-  first_air_date?: string;
-  genre_ids?: number[];
-  genres?: TGenre[];
-  genre?: string;
-  id?: number;
-  original_title?: string;
-  original_language?: string;
-  title?: string;
-  name?: string;
-  backdrop_path?: string | null;
-  popularity?: number;
-  vote_count?: number;
-  video?: boolean;
-  vote_average?: number;
-  budget?: number;
-  open?: (value: boolean) => void;
-};
-
-export type TGenre = {
+export type TCard = {
   id: number;
-  name: string;
-};
-
-export type TGenres = {
-  genres: TGenre[];
 };
 
 export type TModal = {
   open: boolean;
   children?: React.ReactNode;
-  movie: TMoviesResults;
+  card: TCharacter;
   onClose: () => void;
+};
+
+export type TCharacters = {
+  info: {
+    count: number;
+    pages: number;
+    next: string;
+    prev: null | number;
+  };
+  results: TCharacter[];
+};
+
+export type TCharacter = {
+  id: number;
+  name: string;
+  status?: string;
+  species: string;
+  type?: string;
+  gender: string;
+  origin: { name: string };
+  location?: { name: string };
+  image: string;
+  episode?: string[];
 };

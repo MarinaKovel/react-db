@@ -1,7 +1,7 @@
-import '../index.scss';
 import { Routes, Route } from 'react-router-dom';
 import { Mainpage, Aboutpage, Formpage, Notfoundpage } from '@pages';
 import { Layout } from '@components';
+import '../index.scss';
 
 function App() {
   return (

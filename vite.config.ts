@@ -17,6 +17,9 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  server: {
+    open: './',
+  },
   test: {
     globals: true,
     environment: 'jsdom',
