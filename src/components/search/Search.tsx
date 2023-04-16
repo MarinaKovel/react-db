@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, FormEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { searchValueSlice } from '../../app/store/reducers/SearchValueSlice';
+import { searchValueSlice } from '../../reducers/SearchValueSlice';
 
 export function Search() {
   const { search } = useAppSelector((state) => state.searchReducer);

@@ -6,7 +6,6 @@ import react from '@vitejs/plugin-react-swc';
 import { configDefaults } from 'vitest/config';
 import * as path from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
@@ -28,6 +27,7 @@ export default defineConfig({
       enabled: true,
       provider: 'c8',
       all: true,
+      exclude: [...configDefaults.coverage.exclude, 'src/types.ts'],
     },
   },
 });

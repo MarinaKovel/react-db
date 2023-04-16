@@ -1,24 +1,24 @@
 import { useState } from 'react';
-import { TCard } from 'types';
+import { TCharacter } from 'types';
 import { Modal } from '@components';
-import { characterAPI } from '../../app/services/CharacterService';
+import { characterAPI } from '../../services/CharacterService';
 import './card.scss';
 
-export function Card(props: TCard) {
-  const { data: card } = characterAPI.useFetchSearchResultsQuery(props.id.toString());
+export function Card(props: { card: TCharacter }) {
+  const { data: card } = characterAPI.useFetchSearchResultsQuery(props.card.id.toString());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="card" role="listitem" onClickCapture={() => setIsModalOpen(true)}>
       {card && <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} card={card} />}
 
-      {card && <img src={card.image} alt="poster" className="card__poster" />}
-      <p>{card && card.name}</p>
+      {props.card && <img src={props.card.image} alt="poster" className="card__poster" />}
+      <p>{props.card && props.card.name}</p>
       <br />
       <p className="card__description">
-        {card && `${card.species} • ${card.gender}`}
+        {props.card && `${props.card.species} • ${props.card.gender}`}
         <br />
-        <u>Origin:</u> {card && card.origin.name}
+        <u>Origin:</u> {props.card && props.card.origin.name}
       </p>
     </div>
   );

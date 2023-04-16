@@ -1,7 +1,7 @@
 import { Card } from '@components';
 import { SyncLoader } from 'react-spinners';
 import './cardList.scss';
-import { searchAPI } from '../../app/services/SearchService';
+import { searchAPI } from '../../services/SearchService';
 import { useAppSelector } from '../../hooks/redux';
 
 export function CardsList() {
@@ -12,7 +12,7 @@ export function CardsList() {
   return (
     <section className="cards-container" role="list">
       {isLoading && <SyncLoader loading={isLoading} color="#f4f750" size={25} />}
-      {cards && cards.results.map((card) => <Card key={card.id} id={card.id} />)}
+      {cards && cards.results.map((card) => <Card key={card.id} card={card} />)}
     </section>
   );
 }

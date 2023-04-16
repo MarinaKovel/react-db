@@ -1,8 +1,8 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, PreloadedState } from '@reduxjs/toolkit';
 import { searchAPI } from '../services/SearchService';
 import { characterAPI } from '../services/CharacterService';
-import searchReducer from './reducers/SearchValueSlice';
-import answersReducer from './reducers/AnswersSlice';
+import searchReducer from '../reducers/SearchValueSlice';
+import answersReducer from '../reducers/AnswersSlice';
 
 const rootReducer = combineReducers({
   searchReducer,
@@ -11,11 +11,12 @@ const rootReducer = combineReducers({
   answersReducer,
 });
 
-export const setupStore = () => {
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(searchAPI.middleware, characterAPI.middleware),
+    preloadedState,
   });
 };
 

@@ -45,10 +45,6 @@ export type TCurrentPage = {
   [key: string]: string;
 };
 
-export type TCard = {
-  id: number;
-};
-
 export type TModal = {
   open: boolean;
   children?: React.ReactNode;
