@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { screen } from '@testing-library/react';
 import { Form } from '@components';
-import { renderWithProviders } from '../../testUtils';
+import { renderWithProviders } from '@services/testUtils';
 
 describe('Form', () => {
   it('Renders form', () => {

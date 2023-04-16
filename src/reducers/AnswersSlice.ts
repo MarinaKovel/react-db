@@ -1,8 +1,7 @@
-/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TForm, TAnswers } from 'types';
+import { TForm } from 'types';
 
-const initialState: TAnswers = { answers: [] };
+const initialState: { answers: TForm[] } = { answers: [] };
 
 export const answersSlice = createSlice({
   name: 'answers',

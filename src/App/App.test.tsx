@@ -1,8 +1,8 @@
 import { describe, it } from 'vitest';
 import { screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { renderWithProviders } from '@services/testUtils';
 import App from './App';
-import { renderWithProviders } from '../testUtils';
 
 describe('App', () => {
   it('Renders Main page', () => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TCharacter } from 'types';
 import { Modal } from '@components';
-import { characterAPI } from '../../services/CharacterService';
+import { characterAPI } from '@services/CharacterService';
 import './card.scss';
 
 export function Card(props: { card: TCharacter }) {

@@ -33,14 +33,6 @@ export type TButton = {
   onClick?: () => void;
 };
 
-export type TAnswers = {
-  answers: TForm[];
-};
-
-export type TAnswer = {
-  answer: TForm;
-};
-
 export type TCurrentPage = {
   [key: string]: string;
 };

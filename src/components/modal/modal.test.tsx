@@ -1,12 +1,12 @@
 import { describe, it } from 'vitest';
 import { screen } from '@testing-library/react';
-import { searchResults } from '@mocks/handlers';
+import { card } from '@mocks/handlers';
 import { Modal } from '@components';
-import { renderWithProviders } from '../../testUtils';
+import { renderWithProviders } from '@services/testUtils';
 
 describe('Modal', () => {
   it('Renders modal window', () => {
-    renderWithProviders(<Modal open onClose={() => {}} card={searchResults} />);
+    renderWithProviders(<Modal open onClose={() => {}} card={card} />);
     expect(screen.getByText(/Albert Einstein/i)).toBeInTheDocument();
     expect(screen.getByText(/Human/i)).toBeInTheDocument();
     expect(screen.getByText(/Male/i)).toBeInTheDocument();

@@ -1,8 +1,8 @@
 import { Card } from '@components';
 import { SyncLoader } from 'react-spinners';
+import { searchAPI } from '@services/SearchService';
+import { useAppSelector } from '@hooks/redux';
 import './cardList.scss';
-import { searchAPI } from '../../services/SearchService';
-import { useAppSelector } from '../../hooks/redux';
 
 export function CardsList() {
   const { search } = useAppSelector((state) => state.searchReducer);

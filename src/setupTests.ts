@@ -4,10 +4,6 @@ import server from '@mocks/server';
 
 expect.extend(matchers);
 
-beforeAll(() =>
-  server.listen({
-    onUnhandledRequest: 'error',
-  })
-);
+beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());

@@ -1,5 +1,5 @@
 import { Form, Answers } from '@components';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppSelector } from '@hooks/redux';
 
 export function Formpage() {
   const { answers } = useAppSelector((state) => state.answersReducer);

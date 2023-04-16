@@ -1,8 +1,8 @@
 import { combineReducers, configureStore, PreloadedState } from '@reduxjs/toolkit';
-import { searchAPI } from '../services/SearchService';
-import { characterAPI } from '../services/CharacterService';
-import searchReducer from '../reducers/SearchValueSlice';
-import answersReducer from '../reducers/AnswersSlice';
+import { searchAPI } from '@services/SearchService';
+import { characterAPI } from '@services/CharacterService';
+import searchReducer from '@reducers/SearchValueSlice';
+import answersReducer from '@reducers/AnswersSlice';
 
 const rootReducer = combineReducers({
   searchReducer,

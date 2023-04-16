@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { TForm } from 'types';
 import { Select, Input, Button } from '@components';
-import { useAppDispatch } from '../../hooks/redux';
-import { answersSlice } from '../../reducers/AnswersSlice';
+import { useAppDispatch } from '@hooks/redux';
+import { answersSlice } from '@reducers/AnswersSlice';
 import './form.scss';
 
 export function Form() {

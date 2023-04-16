@@ -11,6 +11,9 @@ export default defineConfig({
     alias: {
       '@api': path.resolve(__dirname, './src/api'),
       '@mocks': path.resolve(__dirname, './src/mocks'),
+      '@services': path.resolve(__dirname, './src/services'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@reducers': path.resolve(__dirname, './src/reducers'),
       '@pages': path.resolve(__dirname, './src/pages/index'),
       '@components': path.resolve(__dirname, './src/components/index'),
     },
