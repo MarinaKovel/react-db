@@ -3,36 +3,54 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "checkJs": true,
+    "declaration": true,
+    "declarationMap": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
+    "outDir": "dist",
     "noImplicitAny": true,
+    "incremental": true,
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
-    "baseUrl": "./src",
+    "sourceMap": true,
+    "baseUrl": ".",
     "paths": {
-      "@api/*": ["./api/*"],
-      "@mocks/*": ["./mocks/*"],
-      "@services/*": ["./services/*"],
-      "@hooks/*": ["./hooks/*"],
-      "@reducers/*": ["./reducers/*"],
-      "@pages": ["./pages/index"],
-      "@components": ["./components/index"]
+      "@api/*": ["./src/api/*"],
+      "@mocks/*": ["./src/mocks/*"],
+      "@services/*": ["./src/services/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@reducers/*": ["./src/reducers/*"],
+      "@pages": ["./src/pages/index"],
+      "@components": ["./src/components/index"]
     },
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsxdev"
   },
   "include": [
+    "types/*",
     "vite.config.ts",
     ".eslintrc.cjs",
-    "./src/**/*",
+    "cypress.config.ts",
+    "cypress/e2e/**/*",
+    "cypress/e2e/*",
+    "cypress/support/*",
+    "node_modules/vite/types/*",
+    "src/**/*",
     "styled.d.ts"
-  ],
+  , "server.ts", "types.ts"  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
   "references": [{ "path": "./tsconfig.node.json" }]
 }

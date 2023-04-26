@@ -3,8 +3,23 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import { configDefaults } from 'vitest/config';
+import { UserConfig, configDefaults } from 'vitest/config';
+import istanbul from 'vite-plugin-istanbul';
 import * as path from 'path';
+
+const test = {
+  globals: true,
+  environment: 'jsdom',
+  setupFiles: ['src/setupTests.ts'],
+  threads: false,
+  watch: false,
+  coverage: {
+    enabled: true,
+    provider: 'c8',
+    all: true,
+    exclude: [...configDefaults.coverage.exclude, 'types.ts', 'dist/*'],
+  },
+} as UserConfig['test'];
 
 export default defineConfig({
   resolve: {
@@ -15,22 +30,24 @@ export default defineConfig({
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@reducers': path.resolve(__dirname, './src/reducers'),
       '@pages': path.resolve(__dirname, './src/pages/index'),
-      '@components': path.resolve(__dirname, './src/components/index'),
+      '@components': path.resolve(__dirname, 'src/components/index'),
     },
   },
-  plugins: [react()],
+  root: '',
+  plugins: [
+    react(),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
+  ],
   server: {
-    open: './',
+    host: true,
+    port: 3000,
+    watch: { ignored: '**/coverage/**' },
   },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./src/setupTests.ts'],
-    coverage: {
-      enabled: true,
-      provider: 'c8',
-      all: true,
-      exclude: [...configDefaults.coverage.exclude, 'src/types.ts'],
-    },
-  },
+  build: { minify: false },
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  test,
 });
