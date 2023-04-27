@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TCharacter } from 'types';
+import { TCharacter } from '@types';
 import { Modal } from '@components';
 import { characterAPI } from '@services/CharacterService';
 import './card.scss';

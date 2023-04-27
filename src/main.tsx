@@ -1,20 +1,19 @@
 import { StrictMode } from 'react';
-// import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import { setupStore } from './store/store';
 import App from './app/App';
 import './index.scss';
 
 const store = setupStore();
 
-function Main() {
-  return (
-    <StrictMode>
-      <Provider store={store}>
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
         <App />
-      </Provider>
-    </StrictMode>
-  );
-}
-
-export default Main;
+      </BrowserRouter>
+    </Provider>
+  </StrictMode>
+);

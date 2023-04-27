@@ -1,5 +1,5 @@
 import { LegacyRef, forwardRef } from 'react';
-import { TSelect } from 'types';
+import { TSelect } from '@types';
 
 export const Select = forwardRef(
   ({ onChange, name, label, error }: TSelect, ref?: LegacyRef<HTMLSelectElement>) => (

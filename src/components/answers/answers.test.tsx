@@ -1,6 +1,7 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Answers } from '@components';
+import '@testing-library/jest-dom';
 
 const answer = {
   from: 'Name from',

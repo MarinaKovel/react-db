@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Just visit e2e test', () => {
+describe('E2E cypress tests', () => {
   it('should visit main', () => {
     cy.visit('/');
     cy.title().should('eq', 'React DB');
@@ -8,7 +8,9 @@ describe('Just visit e2e test', () => {
     cy.get('section').should('have.class', 'cards-container');
     cy.get('section').within(() => {
       cy.get('div').should('have.class', 'card');
+      cy.get('.card').first().click();
     });
+    cy.get('div').should('have.class', 'modal__window');
   });
   it('should visit form', () => {
     cy.visit('/form');

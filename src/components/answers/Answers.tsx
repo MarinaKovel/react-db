@@ -1,4 +1,4 @@
-import { TForm } from 'types';
+import { TForm } from '@types';
 
 export function Answers(props: { answer: TForm }) {
   return (

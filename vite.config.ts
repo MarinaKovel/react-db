@@ -24,7 +24,7 @@ const test = {
 export default defineConfig({
   resolve: {
     alias: {
-      '@api': path.resolve(__dirname, './src/api'),
+      '@types': path.resolve(__dirname, './types'),
       '@mocks': path.resolve(__dirname, './src/mocks'),
       '@services': path.resolve(__dirname, './src/services'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
@@ -46,8 +46,6 @@ export default defineConfig({
     port: 3000,
     watch: { ignored: '**/coverage/**' },
   },
-  build: { minify: false },
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  build: { minify: false, sourcemap: 'inline' },
   test,
 });

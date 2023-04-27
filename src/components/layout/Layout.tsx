@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { TCurrentPage } from 'types';
+import { TCurrentPage } from '@types';
 import './layout.scss';
 
 export function Layout() {

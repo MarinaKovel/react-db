@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TForm } from 'types';
+import { TForm } from '@types';
 
 const initialState: { answers: TForm[] } = { answers: [] };
 

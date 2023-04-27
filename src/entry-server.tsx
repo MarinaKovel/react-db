@@ -1,21 +1,19 @@
-import ReactDOMServer, { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
-import { StrictMode } from 'react';
-import type { Request, Response } from 'express';
+import { RenderToPipeableStreamOptions, renderToPipeableStream } from 'react-dom/server';
 import { Provider } from 'react-redux';
-import { App } from './App';
-import { Html } from './Html';
+import App from './app/App';
 import { setupStore } from './store/store';
 import './index.scss';
 
 const store = setupStore();
 
-export function render(url: string) {
-  return ReactDOMServer.renderToString(
-    <StrictMode>
+export function render(url: string, opts: RenderToPipeableStreamOptions) {
+  return renderToPipeableStream(
+    <Provider store={store}>
       <StaticRouter location={url}>
         <App />
       </StaticRouter>
-    </StrictMode>
+    </Provider>,
+    opts
   );
 }

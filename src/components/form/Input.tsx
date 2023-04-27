@@ -1,5 +1,5 @@
 import { LegacyRef, forwardRef } from 'react';
-import { TInput } from 'types';
+import { TInput } from '@types';
 
 const className = (type: string) => {
   switch (type) {

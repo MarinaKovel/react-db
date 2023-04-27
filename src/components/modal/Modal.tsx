@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { TModal } from 'types';
+import { TModal } from '@types';
 import { Button } from '@components';
 import './modal.scss';
 
