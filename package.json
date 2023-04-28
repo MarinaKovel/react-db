@@ -8,7 +8,6 @@
     "lint": "npx eslint src",
     "test": "vitest run --coverage",
     "cypress": "start-server-and-test start http://localhost:3000/ cy:run-e2e && npx nyc report --reporter=text-summary",
-
     "dev:server": "nodemon --watch server.ts --watch src/server --exec \"ts-node server.ts\"",
     "dev:client": "npm run build:client && vite --config vite.config.ts dev",
     "build:client": "vite build --outDir dist/client --ssrManifest",
@@ -38,6 +37,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-spinners": "^0.13.8",
+    "redux": "^4.2.1",
     "rimraf": "^5.0.0",
     "sass": "^1.59.3",
     "serve-static": "^1.15.0",

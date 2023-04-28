@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import fs from 'fs';
 import path from 'node:path';
 import express from 'express';
@@ -27,16 +28,16 @@ async function startServer() {
       template = await vite.transformIndexHtml(url, template);
       const [start, end] = template.split('<!--app-html-->');
 
-      // eslint-disable-next-line prefer-destructuring
-      const render = (await vite.ssrLoadModule('./src/entry-server.tsx')).render;
+      const { render } = await vite.ssrLoadModule('./src/entry-server.tsx');
 
       res.write(start);
-      const stream = render(url, {
+      const { stream, preloadedState } = await render(url, {
         onShellReady() {
           stream.pipe(res);
         },
         onAllReady() {
-          res.write(end);
+          const cards = end.replace('<!--api-data-->', preloadedState());
+          res.write(cards);
           res.end();
         },
         onShellError(err: Error) {

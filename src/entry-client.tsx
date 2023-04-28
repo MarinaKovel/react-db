@@ -3,11 +3,12 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './app/App';
-import { setupStore } from './store/store';
+import { setupStore, RootState } from './store/store';
 import './index.scss';
 
-const store = setupStore();
+type TWindow = Window & typeof globalThis & { PRELOADED_STATE?: RootState };
 
+const store = setupStore((window as TWindow).PRELOADED_STATE);
 const container = document.getElementById('root');
 
 function FullApp() {
@@ -27,4 +28,5 @@ if (import.meta.hot || !container?.innerText) {
   root.render(<FullApp />);
 } else {
   hydrateRoot(container!, <FullApp />);
+  delete (window as TWindow).PRELOADED_STATE;
 }
