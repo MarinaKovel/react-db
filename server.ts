@@ -52,7 +52,7 @@ async function startServer() {
   return app;
 }
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 
 startServer().then((app) => {
   app.listen(port, () => {

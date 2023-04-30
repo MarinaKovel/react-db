@@ -21,7 +21,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
-    expect(screen.getByText(/This SPA 'Rick and Morty' database/i)).toBeInTheDocument();
+    expect(screen.getByText(/This SPA 'Rick and Morty database'/i)).toBeInTheDocument();
   });
 
   it('Renders Form page', () => {

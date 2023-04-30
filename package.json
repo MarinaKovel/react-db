@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": " ts-node server.ts",
+    "dev": "vite-node server.ts",
     "lint": "npx eslint src",
     "test": "vitest run --coverage",
-    "cypress": "start-server-and-test start http://localhost:3000/ cy:run-e2e && npx nyc report --reporter=text-summary",
+    "cypress": "start-server-and-test start http://localhost:3030/ cy:run-e2e && npx nyc report --reporter=text-summary",
     "dev:server": "nodemon --watch server.ts --watch src/server --exec \"ts-node server.ts\"",
     "dev:client": "npm run build:client && vite --config vite.config.ts dev",
     "build:client": "vite build --outDir dist/client --ssrManifest",
@@ -15,7 +15,7 @@
     "start": "vite",
     "cy:open-e2e": "cypress open --e2e --browser chrome",
     "cy:run-e2e": "cypress run --e2e",
-    "cy:e2e": "start-server-and-test start http-get://localhost:3000 cy:open-e2e"
+    "cy:e2e": "start-server-and-test start http-get://localhost:3030 cy:open-e2e"
   },
   "dependencies": {
     "@cypress/code-coverage": "^3.10.4",
