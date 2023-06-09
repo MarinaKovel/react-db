@@ -1,16 +1,3 @@
-export type TMovieList = {
-  movie: TMovie;
-};
-
-export type TMovie = {
-  name: string;
-  year: string;
-  genre: string;
-  rating: number;
-  stars: string;
-  poster: string;
-};
-
 export type TForm = {
   from: string;
   to: string;
@@ -26,17 +13,56 @@ export type TSelect = {
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   name: string;
   label: string;
+  error?: string;
 };
 
-export type TAnswer = {
-  answer: TForm;
+export type TInput = {
+  name: string;
+  type: string;
+  label: string;
+  value?: string;
+  error?: string;
+  accept?: string;
+  ref?: () => void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+};
+
+export type TButton = {
+  name: string;
+  className?: string;
+  onClick?: () => void;
 };
 
 export type TCurrentPage = {
   [key: string]: string;
 };
 
-export type TAddAnswer = {
-  answers: TForm[];
-  addAnswer: (value: TForm[]) => void;
+export type TModal = {
+  open: boolean;
+  children?: React.ReactNode;
+  card: TCharacter;
+  onClose: () => void;
+};
+
+export type TCharacters = {
+  info: {
+    count: number;
+    pages: number;
+    next: string;
+    prev: null | number;
+  };
+  results: TCharacter[];
+};
+
+export type TCharacter = {
+  id: number;
+  name: string;
+  status?: string;
+  species: string;
+  type?: string;
+  gender: string;
+  origin: { name: string };
+  location?: { name: string };
+  image: string;
+  episode?: string[];
 };

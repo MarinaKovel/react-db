@@ -1,8 +1,8 @@
-import './layout.scss';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { TCurrentPage } from '../../types';
+import { TCurrentPage } from 'types';
+import './layout.scss';
 
-function Layout() {
+export function Layout() {
   const location = useLocation();
   const pathNames: TCurrentPage = {
     '/': 'Main',
@@ -29,5 +29,3 @@ function Layout() {
     </>
   );
 }
-
-export default Layout;

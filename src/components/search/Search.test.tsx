@@ -1,10 +1,11 @@
 import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import Search from './Search';
+import { screen } from '@testing-library/react';
+import { Search } from '@components';
+import { renderWithProviders } from '@services/testUtils';
 
 describe('Search', () => {
   it('Renders search input', () => {
-    render(<Search />);
+    renderWithProviders(<Search />);
     expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
   });
 });

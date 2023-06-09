@@ -1,34 +1,33 @@
-import { useState, useRef, useEffect, ChangeEvent } from 'react';
+import { useState, useRef, useEffect, FormEvent } from 'react';
+import { useAppDispatch, useAppSelector } from '@hooks/redux';
+import { searchValueSlice } from '@reducers/SearchValueSlice';
 
-function Search() {
-  const [search, setSearch] = useState(localStorage.getItem('search') || '');
-  const inputRef = useRef(search);
+export function Search() {
+  const { search } = useAppSelector((state) => state.searchReducer);
+  const { setSearchValues } = searchValueSlice.actions;
+  const dispatch = useAppDispatch();
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setSearch(event.target.value);
+  const [inputValue, setInputValue] = useState(search);
+  const inputRef = useRef(inputValue);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    dispatch(setSearchValues(inputRef.current));
   }
 
   useEffect(() => {
-    inputRef.current = search;
-  }, [search]);
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('search', inputRef.current);
-    };
-  }, []);
+    inputRef.current = inputValue;
+  }, [inputValue]);
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="search"
-        value={search}
-        ref={() => search}
+        value={inputValue}
+        ref={() => inputValue}
         placeholder="Search"
-        onChange={handleChange}
+        onChange={(event) => setInputValue(event.target.value)}
       />
     </form>
   );
 }
-
-export default Search;

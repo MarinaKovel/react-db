@@ -1,12 +1,12 @@
-import { TAnswer } from '../../types';
+import { TForm } from 'types';
 
-function Answers(props: TAnswer) {
+export function Answers(props: { answer: TForm }) {
   return (
     <div className="advice">
       <h2 className="advice__question">HI THERE!</h2>
       <span className="advice__question">Dear </span>
       <span>{props.answer.to},</span>
-      <span className="advice__question">Today </span>
+      <span className="advice__question"> Today </span>
       <span>{props.answer.date},</span>
       <p className="advice__question">I just wanted to say </p>
       <p>{props.answer.type}</p>
@@ -23,4 +23,3 @@ function Answers(props: TAnswer) {
     </div>
   );
 }
-export default Answers;

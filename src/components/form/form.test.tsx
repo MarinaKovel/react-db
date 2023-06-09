@@ -1,10 +1,11 @@
 import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import Form from './Form';
+import { screen } from '@testing-library/react';
+import { Form } from '@components';
+import { renderWithProviders } from '@services/testUtils';
 
 describe('Form', () => {
   it('Renders form', () => {
-    render(<Form />);
+    renderWithProviders(<Form />);
     expect(screen.getByText(/Movie adviser/i)).toBeInTheDocument();
     expect(screen.getByText(/Your name:/i)).toBeInTheDocument();
     expect(screen.getByText(/Greetings to/i)).toBeInTheDocument();

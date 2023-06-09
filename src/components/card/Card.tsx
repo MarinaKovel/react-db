@@ -1,23 +1,25 @@
+import { useState } from 'react';
+import { TCharacter } from 'types';
+import { Modal } from '@components';
+import { characterAPI } from '@services/CharacterService';
 import './card.scss';
-import { TMovieList } from '../../types';
 
-function Card(props: TMovieList) {
+export function Card(props: { card: TCharacter }) {
+  const { data: card } = characterAPI.useFetchSearchResultsQuery(props.card.id.toString());
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <div className="card" role="listitem">
-      <p className="card__rating">{props.movie.rating}</p>
-      <img src={props.movie.poster} alt="poster" className="card__poster" />
-      <div>
-        <span>{props.movie.year} • </span>
-        <span>{props.movie.name}</span>
-      </div>
-      <span className="card__description">
-        <u>Genre:</u> {props.movie.genre}
-      </span>
-      <span className="card__description">
-        <u>Stars:</u> {props.movie.stars}
-      </span>
+    <div className="card" role="listitem" onClickCapture={() => setIsModalOpen(true)}>
+      {card && <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} card={card} />}
+
+      {props.card && <img src={props.card.image} alt="poster" className="card__poster" />}
+      <p>{props.card && props.card.name}</p>
+      <br />
+      <p className="card__description">
+        {props.card && `${props.card.species} • ${props.card.gender}`}
+        <br />
+        <u>Origin:</u> {props.card && props.card.origin.name}
+      </p>
     </div>
   );
 }
-
-export default Card;

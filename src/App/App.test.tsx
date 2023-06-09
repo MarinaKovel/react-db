@@ -1,30 +1,31 @@
 import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { renderWithProviders } from '@services/testUtils';
 import App from './App';
 
 describe('App', () => {
   it('Renders Main page', () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={['/']}>
         <App />
       </MemoryRouter>
     );
-    expect(screen.getByText(/Movies/i)).toBeInTheDocument();
+    expect(screen.getByText(/Rick and Morty/i)).toBeInTheDocument();
     expect(screen.getByRole('list')).toBeInTheDocument();
   });
 
   it('Renders About page', () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={['/about']}>
         <App />
       </MemoryRouter>
     );
-    expect(screen.getByText(/This SPA Movie database/i)).toBeInTheDocument();
+    expect(screen.getByText(/This SPA 'Rick and Morty' database/i)).toBeInTheDocument();
   });
 
   it('Renders Form page', () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={['/form']}>
         <App />
       </MemoryRouter>
@@ -33,7 +34,7 @@ describe('App', () => {
   });
 
   it('Renders Not Found if not valid path', () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={['/banana']}>
         <App />
       </MemoryRouter>

@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { TForm } from 'types';
+import { Select, Input, Button } from '@components';
+import { useAppDispatch } from '@hooks/redux';
+import { answersSlice } from '@reducers/AnswersSlice';
 import './form.scss';
-import Select from './Select';
-import { TForm, TAddAnswer } from '../../types';
 
-function Form(props: TAddAnswer) {
+export function Form() {
+  const { setAnswers } = answersSlice.actions;
+  const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,
@@ -22,9 +27,8 @@ function Form(props: TAddAnswer) {
       setIsSaved(false);
     }, 1000);
 
-    props.addAnswer([
-      ...props.answers,
-      {
+    dispatch(
+      setAnswers({
         image: link,
         type: data.type,
         from: data.from,
@@ -33,8 +37,8 @@ function Form(props: TAddAnswer) {
         reason: data.reason,
         message: data.message,
         author: data.author,
-      },
-    ]);
+      })
+    );
   });
 
   useEffect(() => {
@@ -46,127 +50,103 @@ function Form(props: TAddAnswer) {
       <h1>Movie adviser</h1>
       <p className="form__text-yellow">All the fields are required!</p>
 
-      <label>
-        Your name:
-        <input
-          {...register('from', {
-            required: 'fill in',
-            minLength: { value: 3, message: '>= 3 letters' },
-          })}
-          name="from"
-          type="text"
-        />
-        <div className="requirements">{errors.from?.message}</div>
-      </label>
+      <Input
+        {...register('from', {
+          required: 'Fill in',
+          minLength: { value: 3, message: '>= 3 letters' },
+        })}
+        name="from"
+        type="text"
+        label="Your name:"
+        error={errors.from?.message}
+      />
 
-      <label>
-        Greetings to:
-        <input
-          {...register('to', { required: 'Write the name of person' })}
-          name="to"
-          type="text"
-        />
-        <div className="requirements">{errors.to?.message}</div>
-      </label>
+      <Input
+        {...register('to', { required: 'Write the name of person' })}
+        name="to"
+        type="text"
+        label="Greetings to:"
+        error={errors.to?.message}
+      />
 
-      <label>
-        Date of greetings:
-        <input {...register('date', { required: 'Choose a date' })} name="date" type="date" />
-        <div className="requirements">{errors.date?.message}</div>
-      </label>
+      <Input
+        {...register('date', { required: 'Choose a date' })}
+        name="date"
+        type="date"
+        label="Date of greetings:"
+        error={errors.date?.message}
+      />
 
       <Select
         label="Type of greetings: "
         {...register('type', { required: 'Choose a type' })}
         name="type"
+        error={errors.type?.message}
       />
-      <div className="requirements">{errors.type?.message}</div>
 
       <p>Reason:</p>
       <div className="reason">
-        <label className="reason__label">
-          <input
-            {...register('reason', { required: 'Select at list one option' })}
-            name="reason"
-            type="checkbox"
-            value="You are cool"
-          />
-          <span className="reason__span"> </span>
-          You are cool
-        </label>
-        <label className="reason__label">
-          <input
-            {...register('reason', { required: 'Select at list one option' })}
-            name="reason"
-            type="checkbox"
-            value="You are my friend"
-          />
-          <span className="reason__span"> </span>
-          You are my friend
-        </label>
-        <label className="reason__label">
-          <input
-            {...register('reason', { required: 'Select at list one option' })}
-            name="reason"
-            type="checkbox"
-            value="I like you"
-          />
-          <span className="reason__span"> </span>I like you
-        </label>
+        <Input
+          {...register('reason', { required: 'Select at list one option' })}
+          name="reason"
+          type="checkbox"
+          value="You are cool"
+          label="You are cool"
+        />
+        <Input
+          {...register('reason', { required: 'Select at list one option' })}
+          name="reason"
+          type="checkbox"
+          value="You are my friend"
+          label="You are my friend"
+        />
+        <Input
+          {...register('reason', { required: 'Select at list one option' })}
+          name="reason"
+          type="checkbox"
+          value="I like you"
+          label="I like you"
+        />
       </div>
       <div className="requirements">{errors.reason?.message}</div>
 
-      <label>
-        Movie advice & message:
-        <input
-          {...register('message', { required: 'Write a movie and/or message' })}
-          name="message"
-          type="text"
-        />
-        <div className="requirements">{errors.message?.message}</div>
-      </label>
+      <Input
+        {...register('message', { required: 'Write a movie and/or message' })}
+        name="message"
+        type="text"
+        label="Movie advice & message:"
+        error={errors.message?.message}
+      />
 
       <div className="form__radio">
-        <label className="radio__label">
-          <input
-            {...register('author', { required: 'Choose a signature' })}
-            type="radio"
-            name="author"
-            value="show"
-          />
-          <span className="radio__span"> </span>
-          Show author
-        </label>
-        <label className="radio__label">
-          <input
-            {...register('author', { required: 'Choose a signature' })}
-            type="radio"
-            name="author"
-            value="anonymous"
-          />
-          <span className="radio__span"> </span>
-          Anonymous
-        </label>
+        <Input
+          {...register('author', { required: 'Choose a signature' })}
+          type="radio"
+          name="author"
+          value="show"
+          label="Show author"
+        />
+        <Input
+          {...register('author', { required: 'Choose a signature' })}
+          type="radio"
+          name="author"
+          value="anonymous"
+          label="Anonymous"
+        />
       </div>
       <div className="requirements">{errors.author?.message}</div>
 
-      <div>
-        <label>
-          Add picture
-          <input
-            {...register('image', { required: 'Choose a picture' })}
-            type="file"
-            name="image"
-            accept="image/*"
-          />
-          <div className="requirements">{errors.image?.message}</div>
-        </label>
-      </div>
+      <Input
+        {...register('image', { required: 'Choose a picture' })}
+        type="file"
+        name="image"
+        label="Add picture"
+        accept="image/*"
+        error={errors.image?.message}
+      />
 
-      <button type="submit">Submit</button>
+      <Button name="Submit" />
       {isSaved && <p>Data has been saved</p>}
     </form>
   );
 }
-
-export default Form;
