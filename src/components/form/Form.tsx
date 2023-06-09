@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { TForm, TAddAnswer } from 'types';
+import { TForm } from 'types';
 import { Select, Input, Button } from '@components';
+import { useAppDispatch } from '@hooks/redux';
+import { answersSlice } from '@reducers/AnswersSlice';
 import './form.scss';
 
-export function Form(props: TAddAnswer) {
+export function Form() {
+  const { setAnswers } = answersSlice.actions;
+  const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,
@@ -22,9 +27,8 @@ export function Form(props: TAddAnswer) {
       setIsSaved(false);
     }, 1000);
 
-    props.addAnswer([
-      ...props.answers,
-      {
+    dispatch(
+      setAnswers({
         image: link,
         type: data.type,
         from: data.from,
@@ -33,8 +37,8 @@ export function Form(props: TAddAnswer) {
         reason: data.reason,
         message: data.message,
         author: data.author,
-      },
-    ]);
+      })
+    );
   });
 
   useEffect(() => {

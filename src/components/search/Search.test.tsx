@@ -1,14 +1,11 @@
 import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { TMovies } from 'types';
-import { searchResults } from '@mocks/handlers';
+import { screen } from '@testing-library/react';
 import { Search } from '@components';
-
-const doSearch: (value: TMovies) => void = () => {};
+import { renderWithProviders } from '@services/testUtils';
 
 describe('Search', () => {
   it('Renders search input', () => {
-    render(<Search searchResults={searchResults} doSearch={doSearch} />);
+    renderWithProviders(<Search />);
     expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
   });
 });

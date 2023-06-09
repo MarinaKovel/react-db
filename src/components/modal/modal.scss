@@ -54,6 +54,7 @@
 .modal__right {
     display: flex;
     flex-direction: column;
+    min-width: 50%;
 }
 .modal__poster {
     position: relative;

@@ -1,6 +1,6 @@
-import { TAnswer } from 'types';
+import { TForm } from 'types';
 
-export function Answers(props: TAnswer) {
+export function Answers(props: { answer: TForm }) {
   return (
     <div className="advice">
       <h2 className="advice__question">HI THERE!</h2>

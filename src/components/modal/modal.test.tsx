@@ -1,14 +1,17 @@
 import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { searchResults } from '@mocks/handlers';
+import { screen } from '@testing-library/react';
+import { card } from '@mocks/handlers';
 import { Modal } from '@components';
+import { renderWithProviders } from '@services/testUtils';
 
 describe('Modal', () => {
   it('Renders modal window', () => {
-    render(<Modal open onClose={() => {}} movie={searchResults.results[0]} />);
-    expect(screen.getByText(/Billy Batson/i)).toBeInTheDocument();
-    expect(screen.getByText(/Popularity/i)).toBeInTheDocument();
-    expect(screen.getByText(/Original title/i)).toBeInTheDocument();
-    expect(screen.getByText(/Original language/i)).toBeInTheDocument();
+    renderWithProviders(<Modal open onClose={() => {}} card={card} />);
+    expect(screen.getByText(/Albert Einstein/i)).toBeInTheDocument();
+    expect(screen.getByText(/Human/i)).toBeInTheDocument();
+    expect(screen.getByText(/Male/i)).toBeInTheDocument();
+    expect(screen.getByText(/C-137/i)).toBeInTheDocument();
+    expect(screen.getByText(/12/i)).toBeInTheDocument();
+    expect(screen.getByAltText('poster')).toBeInTheDocument();
   });
 });

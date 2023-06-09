@@ -18,6 +18,9 @@
     "paths": {
       "@api/*": ["./api/*"],
       "@mocks/*": ["./mocks/*"],
+      "@services/*": ["./services/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@reducers/*": ["./reducers/*"],
       "@pages": ["./pages/index"],
       "@components": ["./components/index"]
     },

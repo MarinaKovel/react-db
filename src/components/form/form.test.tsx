@@ -1,14 +1,11 @@
 import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { TForm } from 'types';
+import { screen } from '@testing-library/react';
 import { Form } from '@components';
-
-const answers: TForm[] = [];
-const addAnswer: (value: TForm[]) => void = () => {};
+import { renderWithProviders } from '@services/testUtils';
 
 describe('Form', () => {
   it('Renders form', () => {
-    render(<Form answers={answers} addAnswer={addAnswer} />);
+    renderWithProviders(<Form />);
     expect(screen.getByText(/Movie adviser/i)).toBeInTheDocument();
     expect(screen.getByText(/Your name:/i)).toBeInTheDocument();
     expect(screen.getByText(/Greetings to/i)).toBeInTheDocument();

@@ -1,44 +1,18 @@
-import { useState, useEffect } from 'react';
-import { API } from '@api/API';
-import { TMoviesResults, TGenre, TGenres, TCardList } from 'types';
 import { Card } from '@components';
+import { SyncLoader } from 'react-spinners';
+import { searchAPI } from '@services/SearchService';
+import { useAppSelector } from '@hooks/redux';
 import './cardList.scss';
 
-export function CardsList(props: TCardList) {
-  const [movies, setMovies] = useState<TMoviesResults[]>();
-  const [genres, setGenres] = useState<TGenre[]>();
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setMovies(props.searchResults?.results);
-    setIsLoaded(!!props.searchResults);
-  }, [props]);
-
-  useEffect(() => {
-    API.getGenres().then((data: void | TGenres) => {
-      if (data) setGenres(data.genres);
-    });
-  }, []);
+export function CardsList() {
+  const { search } = useAppSelector((state) => state.searchReducer);
+  const { data: cards, error, isLoading } = searchAPI.useFetchSearchResultsQuery(search);
+  if (error) return <h3>No results are found</h3>;
 
   return (
     <section className="cards-container" role="list">
-      {!isLoaded ? (
-        <div>Loading...</div>
-      ) : (
-        movies?.map((movie) => (
-          <Card
-            key={movie.id}
-            id={movie.id}
-            title={movie.title || movie.name}
-            vote_average={movie.vote_average}
-            release_date={movie.release_date || movie.first_air_date}
-            poster_path={movie.poster_path}
-            genre={
-              genres?.find((genre) => movie.genre_ids && genre.id === movie.genre_ids[0])?.name
-            }
-          />
-        ))
-      )}
+      {isLoading && <SyncLoader loading={isLoading} color="#f4f750" size={25} />}
+      {cards && cards.results.map((card) => <Card key={card.id} card={card} />)}
     </section>
   );
 }

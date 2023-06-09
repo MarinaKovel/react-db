@@ -4,8 +4,6 @@ import { Button } from '@components';
 import './modal.scss';
 
 export function Modal(props: TModal) {
-  const baseImgUrl = 'https://image.tmdb.org/t/p/w500/';
-
   if (!props.open) return null;
 
   return createPortal(
@@ -13,28 +11,29 @@ export function Modal(props: TModal) {
       <div className="modal__bg" onClick={props.onClose} role="complementary" />
       <div className="modal__window">
         <Button name="x" className="modal__close" onClick={props.onClose} />
-        <div className="modal__title">{props.movie.title}</div>
+        <div className="modal__title">{props.card.name}</div>
         <div className="modal__container">
           <div className="modal__left">
-            <p className="card__rating">{props.movie.vote_average?.toFixed(1)}</p>
-            <img
-              src={`${baseImgUrl}${props.movie.poster_path}`}
-              alt="poster"
-              className="modal__poster"
-            />
-            <span className="modal__text">{props.movie.release_date?.substr(0, 4)}</span>
+            <img src={props.card.image} alt="poster" className="modal__poster" />
+            <span className="modal__text">
+              {props.card.species} • {props.card.gender}
+            </span>
           </div>
           <div className="modal__right">
-            <p className="modal__text">{props.movie.overview}</p>
-            <br />
             <p className="modal__text">
-              <u>Popularity:</u> {props.movie.popularity}
-            </p>
-            <p className="modal__text">
-              <u>Original title:</u> {props.movie.original_title}
-            </p>
-            <p className="modal__text">
-              <u>Original language:</u> {props.movie.original_language}
+              <u>Location:</u> {props.card.location && props.card.location.name}
+              <br />
+              <u>Origin:</u> {props.card.origin.name}
+              <br />
+              <u>Status:</u> {props.card.status}
+              <br />
+              <u>Episodes:</u>{' '}
+              {props.card.episode &&
+                props.card.episode.map((episode, index) =>
+                  index
+                    ? `, ${episode.slice(episode.lastIndexOf('/') + 1)}`
+                    : `${episode.slice(episode.lastIndexOf('/') + 1)}`
+                )}
             </p>
           </div>
         </div>
