@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 coverage
+.nyc_output
+cypress/videos
 *.local
 
 dist

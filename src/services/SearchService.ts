@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { TCharacters } from 'types';
+import { TCharacters } from '@types';
 
 export const searchAPI = createApi({
   reducerPath: 'searchAPI',
